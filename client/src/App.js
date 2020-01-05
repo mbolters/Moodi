@@ -12,6 +12,7 @@ import ColorSwitcher from './components/common/ColorSwitcher';
 import NotificationContainer from './components/common/react-notifications/NotificationContainer';
 import { isMultiColorActive } from './constants/defaultValues';
 import { getDirection } from './helpers/Utils';
+import Post from './components/cards/Post';
 
 const ViewMain = React.lazy(() =>
   import(/* webpackChunkName: "views" */ './views')
@@ -49,6 +50,7 @@ class App extends Component {
           <React.Fragment>
             <NotificationContainer />
             {isMultiColorActive && <ColorSwitcher />}
+            <Post />
             <Suspense fallback={<div className="loading" />}>
               <Router>
                 <Switch>
