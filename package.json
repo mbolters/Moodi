@@ -1,32 +1,28 @@
 {
-  "name": "mern",
+  "name": "mern-auth",
   "version": "1.0.0",
+  "description": "**Authentication",
   "main": "server.js",
   "scripts": {
-    "client": "cd client && npm run start",
-    "server": "nodemon index.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "start": "node index.js",
-    "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "seed": "node scripts/seedDB.js",
-    "install": "cd client && npm install",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^4.1.2",
-    "nodemon": "^1.19.4"
-  },
   "dependencies": {
-    "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "concurrently": "^5.0.2",
     "express": "^4.17.1",
-    "if-env": "^1.0.4",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.4",
-    "node": "^13.5.0"
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "validator": "^12.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   },
   "repository": {
     "type": "git",
@@ -35,6 +31,5 @@
   "bugs": {
     "url": "https://github.com/mbolters/Moodi/issues"
   },
-  "homepage": "https://github.com/mbolters/Moodi#readme",
-  "description": ""
+  "homepage": "https://github.com/mbolters/Moodi#readme"
 }
