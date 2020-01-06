@@ -1,91 +1,51 @@
-import React, { Component, Suspense } from 'react';
-import { connect } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom';
-import { IntlProvider } from 'react-intl';
-import AppLocale from './lang';
-import ColorSwitcher from './components/common/ColorSwitcher';
-import NotificationContainer from './components/common/react-notifications/NotificationContainer';
-import { isMultiColorActive } from './constants/defaultValues';
-import { getDirection } from './helpers/Utils';
-import Post from './components/cards/Post';
-
-const ViewMain = React.lazy(() =>
-  import(/* webpackChunkName: "views" */ './views')
-);
-const ViewApp = React.lazy(() =>
-  import(/* webpackChunkName: "views-app" */ './views/app')
-);
-const ViewError = React.lazy(() =>
-  import(/* webpackChunkName: "views-error" */ './views/error')
-);
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    const direction = getDirection();
-    if (direction.isRtl) {
-      document.body.classList.add('rtl');
-      document.body.classList.remove('ltr');
-    } else {
-      document.body.classList.add('ltr');
-      document.body.classList.remove('rtl');
-    }
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { Provider } from "react-redux";
+import store from "./store";
+import Navbar from "./components/layout/Navbar";
+import Landing from "./components/layout/Landing";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import PrivateRoute from "./components/private-route/PrivateRoute";
+import Dashboard from "./components/dashboard/Dashboard";
+// Check for token to keep user logged in
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  const token = localStorage.jwtToken;
+  setAuthToken(token);
+  // Decode token and get user info and exp
+  const decoded = jwt_decode(token);
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+// Check for expired token
+  const currentTime = Date.now() / 1000; // to get in milliseconds
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutUser());
+    // Redirect to login
+    window.location.href = "./login";
   }
-
+}
+class App extends Component {
   render() {
-    const { locale } = this.props;
-    const currentAppLocale = AppLocale[locale];
-
     return (
-      <div className="h-100">
-        <IntlProvider
-          locale={currentAppLocale.locale}
-          messages={currentAppLocale.messages}
-        >
-          <React.Fragment>
-            <NotificationContainer />
-            {isMultiColorActive && <ColorSwitcher />}
-            <Post />
-            <Suspense fallback={<div className="loading" />}>
-              <Router>
-                <Switch>
-                  <Route
-                    path="/app"
-                    render={props => <ViewApp {...props} />}
-                  />
-                  <Route
-                    path="/error"
-                    exact
-                    render={props => <ViewError {...props} />}
-                  />
-                  <Route
-                    path="/"
-                    exact
-                    render={props => <ViewMain {...props} />}
-                  />
-                  <Redirect to="/error" />
-                </Switch>
-              </Router>
-            </Suspense>
-          </React.Fragment>
-        </IntlProvider>
-      </div>
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Switch>
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            </Switch>
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
-
-const mapStateToProps = ({ settings }) => {
-  const { locale } = settings;
-  return { locale };
-};
-const mapActionsToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapActionsToProps
-)(App);
+export default App;
