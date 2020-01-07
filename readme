@@ -48,6 +48,4 @@ npm i -D nodemon
 
 npm i -g create-react-app
 
-mkdir client && cd client && create-react-app .
-
 npm i axios classnames jwt-decode react-redux react-router-dom redux redux-thunk
