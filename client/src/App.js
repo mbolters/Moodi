@@ -11,7 +11,9 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
-import Form from "./components/forms/Form";
+import MoodsList from "./components/moods/moods-list.js";
+import EditMood from "./components/moods/edit-mood.js";
+import CreateMood from "./components/moods/create-mood.js";
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -43,6 +45,9 @@ class App extends Component {
             <Route exact path="/form" component={Form} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <Route path="/" exact component={MoodsList} />
+              <Route path="/edit/:id" component={EditMood} />
+              <Route path="/create" component={CreateMood} />
             </Switch>
           </div>
         </Router>

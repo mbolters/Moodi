@@ -42,12 +42,15 @@ redux-thunk: middleware for Redux that allows us to directly access the dispatch
 
 npm init
 
+npm i node.js 
+*NOTE* node.js must be installed in route and client folders
+
 npm i bcryptjs body-parser concurrently express is-empty jsonwebtoken mongoose passport passport-jwt validator
 
 npm i -D nodemon
 
 npm i -g create-react-app
 
-mkdir client && cd client && create-react-app .
-
 npm i axios classnames jwt-decode react-redux react-router-dom redux redux-thunk
+
+npm i react-datepicker

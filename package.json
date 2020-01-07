@@ -19,10 +19,18 @@
     "classnames": "^2.2.6",
     "concurrently": "^5.0.2",
     "express": "^4.17.1",
+    "gitignore": "^0.6.0",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
+<<<<<<< HEAD
     "mongoose": "^5.8.5",
+=======
+    "materialize": "^1.0.0",
+    "mongoose": "^5.8.5",
+    "node": "^13.5.0",
+    "node.js": "0.0.0",
+>>>>>>> 76122ab1d5709940a1cbe521fa29fb1d5780579b
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react-redux": "^7.1.3",
