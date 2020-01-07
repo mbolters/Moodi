@@ -13,9 +13,20 @@ class Navbar extends Component {
               }}
               className="col s5 brand-logo center black-text"
             >
-              <i className="material-icons">code</i>
-              MERN
-            </Link>
+              <i className="material-icons">insert_emoticon</i>
+              Moodi
+              <div className="collapse navbar-collapse">
+              <ul className="navbar-nav mr-auto">
+                <li className="navbar-item">
+                <Link to="/" className="nav-link">Moods</Link>
+                </li>
+                <li className="navbar-item">
+                <Link to="/create" className="nav-link">Create Mood Log</Link>
+                </li>
+                <li className="navbar-item"></li>
+              </ul>
+              </div>
+            </Link> 
           </div>
         </nav>
       </div>
