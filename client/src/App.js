@@ -6,15 +6,25 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
 import Navbar from "./components/layout/Navbar";
+import Sidebar from "./components/layout/Sidebar";
+import Main from "./components/layout/Main";
+import MobileFoot from "./components/layout/MobileFoot";
+
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+<<<<<<< HEAD
 import Form from "./components/forms/Form";
+=======
+import Form from "./components/forms/Form"
+>>>>>>> 26f72082fe32aec9f08d89d5f7b99a7b29306a86
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import MoodsList from "./components/moods/moods-list.js";
 import EditMood from "./components/moods/edit-mood.js";
 import CreateMood from "./components/moods/create-mood.js";
+import './App.css';
+
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -40,6 +50,9 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
+            <Sidebar />
+            <Main />
+            <MobileFoot />
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
