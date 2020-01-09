@@ -31,18 +31,18 @@ class Form extends Component {
     handleSubmit = e => {
         e.preventDefault();
         
-        fetch('http://localhost:3000/formtest',{
-        method: "POST",
-        body: JSON.stringify(userData),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-      }).then(response => {
-        response.json().then(data =>{
-          console.log("Successful" + data);
-        })
-    })
+    //     fetch('http://localhost:3000/formtest',{
+    //     method: "POST",
+    //     body: JSON.stringify(userData),
+    //     headers: {
+    //       'Accept': 'application/json',
+    //       'Content-Type': 'application/json'
+    //     },
+    //   }).then(response => {
+    //     response.json().then(data =>{
+    //       console.log("Successful" + data);
+    //     })
+    // })
     }
 
       render() {
