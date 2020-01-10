@@ -71,7 +71,7 @@ export default class CreateMood extends Component {
     return (
       <div>
         <h3>Create New Mood Log</h3>
-        <form onSubmit={this.onSubmit}>
+        <form>
           <div className="form-group"> 
             <label>Name: </label>
             <select ref="userInput"
@@ -114,11 +114,11 @@ export default class CreateMood extends Component {
                 selected={this.state.date}
                 onChange={this.onChangeDate}
               />
-            </div>
-          </div>
+            </div> 
+           </div>
 
           <div className="form-group">
-            <input type="submit" value="Create Mood Log" className="btn btn-primary" />
+            <input type="submit" value="Create Mood Log" className="btn btn-primary" onClick={this.onSubmit}/>
           </div>
         </form>
       </div>

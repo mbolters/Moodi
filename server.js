@@ -1,24 +1,43 @@
 const express = require("express");
 
-const mongoose = require("mongoose");
-const routes = require("./routes");
+
+
+//Initialize
 const app = express();
-const PORT = process.env.PORT || 3001;
 
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
-// Add routes, both API and view
-app.use(routes);
 
-// Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/change");
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
-// Start the API server
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
+// Bodyparser middleware
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
+app.use(bodyParser.json());
+
+// DB Config
+//const db = require("./config/keys").mongoURI;
+
+// Connect to MongoDB
+mongoose
+  .connect("mongodb://localhost/moodi", { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
+
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport config
+require("./config/passport")(passport);
+
+// Routes
+app.use("/api/users", users);
+app.use('/moods', moods);
+
+const port = process.env.PORT || 5000 ; // process.env.port is Heroku's port to deploy the app there
+app.listen(port, () => console.log(`Server up and running on port ${port} !`));
