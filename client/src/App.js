@@ -13,11 +13,7 @@ import MobileFoot from "./components/layout/MobileFoot";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-<<<<<<< HEAD
-import Form from "./components/forms/Form";
-=======
 import Form from "./components/forms/Form"
->>>>>>> 26f72082fe32aec9f08d89d5f7b99a7b29306a86
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import MoodsList from "./components/moods/moods-list.js";

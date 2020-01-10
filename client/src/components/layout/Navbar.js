@@ -1,38 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import "./Navbar.css";
-class Navbar extends Component {
-  render() {
-    return (
-      <div className="navbar-fixed">
-        <nav className="z-depth-0">
-          <div className="nav-wrapper white">
-            <Link
-              to="/"
-              style={{
-                fontFamily: "monospace"
-              }}
-              className="col s5 brand-logo center black-text"
-            >
-              <i className="material-icons">insert_emoticon</i>
-              Moodi
-              
-              <div className="collapse navbar-collapse">
-              <ul className="navbar-nav mr-auto">
-                <li className="navbar-item">
-                <Link to="/" className="nav-link">Moods</Link>
-                </li>
-                <li className="navbar-item">
-                <Link to="/create" className="nav-link blue-text">Create Mood Log</Link>
-                </li>
-                <li className="navbar-item"></li>
-              </ul>
-              </div>
-            </Link> 
-          </div>
-        </nav>
-=======
 
 class Navbar extends Component {
   render() {
@@ -75,7 +42,6 @@ class Navbar extends Component {
           <li><a href="#!"><i className="material-icons">person</i></a></li>
           <li><a href="#!"><i className="material-icons">exit_to_app</i></a></li>
         </ul>
->>>>>>> 26f72082fe32aec9f08d89d5f7b99a7b29306a86
       </div>
     </nav>
   </div>
