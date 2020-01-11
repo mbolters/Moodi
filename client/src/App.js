@@ -6,7 +6,6 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
 import Navbar from "./components/layout/Navbar";
-import Sidebar from "./components/layout/Sidebar";
 import MobileFoot from "./components/layout/MobileFoot";
 import BarChart from "./components/recharts/BarChart";
 
@@ -51,9 +50,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Navbar />
-            <Sidebar />
-            
+            <Navbar />            
             <MobileFoot />
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
