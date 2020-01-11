@@ -8,21 +8,25 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
+  console.log(req.body);
+  
   const name = req.body.name;
+  const username = req.body.username;
   const mood = req.body.mood;
   const description = req.body.description;
   const date = Date.parse(req.body.date);
 
   const newMood = new Mood({
     name,
+    username,
     mood,
     description,
     date,
   });
 
   newMood.save()
-  .then(() => res.json('Mood added!'))
-  .catch(err => res.status(400).json('Error: ' + err));
+  .then(() => res.json({message: 'Mood added!'}))
+  .catch(err => res.status(400).json({mesage: 'Error: ' + err}));
 });
 
 router.route('/:id').get((req, res) => {
