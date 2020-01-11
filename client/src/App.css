@@ -10,6 +10,10 @@ h6 {
   margin-top: 0;
 }
 
+.purple{
+  background-color: #A964DE!important;
+}
+
 .card,
 .card-panel {
   box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.08), 0 1px 3px 1px rgba(60, 64, 67, 0.16);
@@ -65,7 +69,7 @@ nav .nav-wrapper i,
 
 /* sidenav */
 .side-nav {
-  position: absolute;
+  position: fixed;
 }
 .side-nav .divider {
   margin: 8px 0;
@@ -149,7 +153,7 @@ table tr:last-child {
 #mobilefoot{
   position:absolute; 
   bottom:0px; 
-  height:56px; 
+  height:50px; 
   left:0px; 
   right:0px; 
   overflow:hidden;
@@ -169,4 +173,8 @@ table tr:last-child {
 
 .recharts-wrapper{
   width: 100%;
+}
+
+.side-nav{
+  left: 0;
 }
