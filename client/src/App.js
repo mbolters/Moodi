@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Navbar from "./components/layout/Navbar";
 import Sidebar from "./components/layout/Sidebar";
-import Main from "./components/layout/Main";
 import MobileFoot from "./components/layout/MobileFoot";
 import BarChart from "./components/recharts/BarChart";
 
@@ -61,13 +60,12 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/barchart" component={BarChart} />
             <Switch>
-              <PrivateRoute exact path="/dashboard" component={Main} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <Route path="/" exact component={MoodsList} />
               <Route path="/edit/:id" component={EditMood} />
               <PrivateRoute path="/create" component={CreateMood} />
             </Switch>
             
-
           </div>
         </Router>
       </Provider>
