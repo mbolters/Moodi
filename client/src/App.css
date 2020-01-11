@@ -2,6 +2,7 @@ body {
   background-color: #f6f6f6;
   font-size: 13px;
   letter-spacing: 0.02rem;
+  margin-bottom: 70px;
 }
 
 h6 {
@@ -27,6 +28,9 @@ h6 {
   .main {
     padding-left: 250px;
   }
+  .recharts-div{
+    margin-left: 300px;
+  }
 }
 /* nav */
 nav {
@@ -46,6 +50,7 @@ nav .nav-wrapper i,
 .navbar-fixed {
   height: 56px;
   line-height: 56px;
+  
 }
 
 .nav-wrapper ul a:hover {
@@ -160,4 +165,8 @@ table tr:last-child {
 
 .add-button {
   font-size: 40px !important;
+}
+
+.recharts-wrapper{
+  width: 100%;
 }
