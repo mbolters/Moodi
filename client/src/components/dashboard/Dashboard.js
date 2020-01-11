@@ -12,8 +12,17 @@ class Dashboard extends Component {
 render() {
     const { user } = this.props.auth;
 return (
-
+  
   <div className="main">
+          <ul className="side-nav fixed transparent z-depth-0 hide-on-med-and-down">
+      <li className="active"><a href="/"><i className="material-icons">home</i>Dashboard</a></li>
+      <li><a href="/create"><i className="material-icons">add_circle_outline</i>Log Mood</a></li>
+      <li><a href="#"><i className="material-icons">face</i>View Moods</a></li>
+      <li>
+        <div className="divider"></div>
+      </li>
+      <li><a href="#"><i className="material-icons">settings</i>Settings</a></li>
+    </ul>
         <div style={{ height: "40vh" }} className="container valign-wrapper">
         <div className="row">
           <div className="col s12 center-align">
@@ -32,7 +41,8 @@ return (
                 marginTop: "1rem"
               }}
               onClick={this.onLogoutClick}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              className="btn btn-large waves-effect waves-light hoverable"
+              style={{backgroundColor: "#7F66AE"}}
             >
               Logout
             </button>
@@ -43,7 +53,7 @@ return (
   <div className="container-fluid">
     <div className="row">
       <div className="col s12 m4">
-        <div className="card blue white-text">
+        <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
               <h6>25%</h6>
@@ -55,7 +65,7 @@ return (
         </div>
       </div>
       <div className="col s12 m4">
-        <div className="card blue white-text">
+        <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
               <h6>156</h6>
@@ -67,7 +77,7 @@ return (
         </div>
       </div>
       <div className="col s12 m4">
-        <div className="card blue white-text">
+        <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
               <h6>50</h6>
