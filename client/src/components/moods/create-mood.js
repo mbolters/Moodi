@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
+
+
 
 export default class CreateMood extends Component {
   constructor(props) {
@@ -20,6 +23,7 @@ export default class CreateMood extends Component {
       users: []
     }
   }
+  
 
   componentDidMount() {
     this.setState({ 
@@ -55,23 +59,32 @@ export default class CreateMood extends Component {
   onSubmit(e) {
     e.preventDefault();
   
+    
     const mood = {
       name: this.state.name,
+      username: "User1",
       mood: this.state.mood,
       description: this.state.description,
       date: this.state.date,
     };
-  
+
     console.log(mood);
-    
-    window.location = '/';
+
+    axios.post('/moods/add', mood)
+
+    .then((result) => {
+      
+      console.log("Mood added!");
+    });
+ 
   }
 
   render() {
     return (
       <div>
+        
         <h3>Create New Mood Log</h3>
-        <form>
+        <form onSubmit={this.onSubmit}> 
           <div className="form-group"> 
             <label>Name: </label>
             <select ref="userInput"
@@ -118,7 +131,7 @@ export default class CreateMood extends Component {
            </div>
 
           <div className="form-group">
-            <input type="submit" value="Create Mood Log" className="btn btn-primary" onClick={this.onSubmit}/>
+            <input type="submit" value="Create Mood Log" className="btn btn-primary"/>
           </div>
         </form>
       </div>
