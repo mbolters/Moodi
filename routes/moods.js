@@ -31,9 +31,30 @@ router.route('/add').post((req, res) => {
 
 router.route('/:id').get((req, res) => {
   Mood.findById(req.params.id)
-    .then(mood => res.json(mood))
+    .then(mood => res.json(mood)) 
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+router.route('/usermood').get((req, res) => {
+  // const username = req.params.id
+  Mood.find({ username: 'davishochs'})
+    .then(mood => {
+      // console.log(mood)
+      // const entries = mood.filter(user => user.username === username)
+      // res.json({usermoods: entries})
+      res.json({moods: mood})
+    }) 
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+//words.filter(word => word.length > 6);
+// User.find({}, function(err, users) {
+//   var userMap = {};
+//   users.forEach(function(user) {
+//     userMap[user._id] = user;
+//   });
+//   res.send(userMap);  
+// });
 router.route('/:id').delete((req, res) => {
   Mood.findByIdAndDelete(req.params.id)
     .then(() => res.json('Mood deleted.'))
