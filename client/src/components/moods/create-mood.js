@@ -4,9 +4,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import Sidebar from '../dashboard/Sidebar';
 import MobileFoot from '../layout/MobileFoot';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
 
-
-export default class CreateMood extends Component {
+class CreateMood extends Component {
   constructor(props) {
     super(props);
 
@@ -18,6 +20,7 @@ export default class CreateMood extends Component {
 
     this.state = {
       name: '',
+      username: '',
       mood: '',
       description: '',
       date: new Date(),
@@ -27,9 +30,12 @@ export default class CreateMood extends Component {
   
 
   componentDidMount() {
+    const { user } = this.props.auth;
+
     this.setState({ 
       users: ['test user'],
-      name: 'test user'
+      name: 'test user',
+      username: user.username
     });
   }
 
@@ -63,7 +69,7 @@ export default class CreateMood extends Component {
     
     const mood = {
       name: this.state.name,
-      username: "User1",
+      username: this.state.username,
       mood: this.state.mood,
       description: this.state.description,
       date: this.state.date,
@@ -142,3 +148,19 @@ export default class CreateMood extends Component {
     )
   }
 }
+
+CreateMood.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(CreateMood);
