@@ -36,12 +36,12 @@ class Navbar extends Component {
     <nav>
       <div className="nav-wrapper">
         <ul>
-          <li><a href="#!"><img src="moodi_logo.png" width="150px"></img></a></li>
+          <li><a href="/dashboard"><img src="moodi_logo.png" width="150px"></img></a></li>
         </ul>
-        <ul className="right">
+        {/* <ul className="right">
           <li><a href="#!"><i className="material-icons">person</i></a></li>
           <li><a href="#!"><i className="material-icons">exit_to_app</i></a></li>
-        </ul>
+        </ul> */}
       </div>
     </nav>
   </div>

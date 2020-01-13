@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
-
+import Sidebar from '../dashboard/Sidebar';
+import MobileFoot from '../layout/MobileFoot';
 
 
 export default class CreateMood extends Component {
@@ -81,8 +82,9 @@ export default class CreateMood extends Component {
 
   render() {
     return (
-      <div>
-        
+      <div className="main">   
+        <Sidebar/>   
+        <div className="container-fluid">
         <h3>Create New Mood Log</h3>
         <form onSubmit={this.onSubmit}> 
           <div className="form-group"> 
@@ -134,6 +136,8 @@ export default class CreateMood extends Component {
             <input type="submit" value="Create Mood Log" className="btn btn-primary"/>
           </div>
         </form>
+        </div>
+        <MobileFoot/>
       </div>
     )
   }
