@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import axios from 'axios';
+
 import { logoutUser } from "../../actions/authActions";
+import Sidebar from '../../components/dashboard/Sidebar';
+import MobileFoot from '../layout/MobileFoot';
+
+import MoodsList from "../../components/moods/moods-list.js";
+
 
 class Dashboard extends Component {
     onLogoutClick = e => {
@@ -9,46 +16,46 @@ class Dashboard extends Component {
     this.props.logoutUser();
   };
 
+
+  state = {
+    quote: []
+  }
+
+  componentDidMount() {
+    const API_KEY = "MToK4JPO7RRViLk7e7mmXgeF"
+    axios.get(`https://cors-anywhere.herokuapp.com/http://quotes.rest/quote/search.json?category=inspire`, { headers: { "X-Theysaidso-Api-Secret": API_KEY}})
+      .then(res => {
+        const quote = res.data.contents;
+        this.setState({ quote });
+        console.log({quote})
+      })
+  }
+
+
 render() {
     const { user } = this.props.auth;
 return (
   
   <div className="main">
-          <ul className="side-nav fixed transparent z-depth-0 hide-on-med-and-down">
-      <li className="active"><a href="/"><i className="material-icons">home</i>Dashboard</a></li>
-      <li><a href="/create"><i className="material-icons">add_circle_outline</i>Log Mood</a></li>
-      <li><a href="#"><i className="material-icons">face</i>View Moods</a></li>
-      <li>
-        <div className="divider"></div>
-      </li>
-      <li><a href="#"><i className="material-icons">settings</i>Settings</a></li>
-    </ul>
-        <div style={{ height: "40vh" }} className="container valign-wrapper">
+    <Sidebar/>
+<div id="message">
+<div className="container" style={{ height: "20vh", marginTop: "5vh" }}>
         <div className="row">
           <div className="col s12 center-align">
             <h4>
               <b>Hey there,</b> {user.name.split(" ")[0]}
               <p className="flow-text grey-text text-darken-1">
-                You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
+                You look great today. 
               </p>
             </h4>
-            <button
-              style={{
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem"
-              }}
-              onClick={this.onLogoutClick}
-              className="btn btn-large waves-effect waves-light hoverable"
-              style={{backgroundColor: "#7F66AE"}}
-            >
-              Logout
-            </button>
+            <blockquote>
+            {this.state.quote.quote}
+            <cite>{this.state.quote.author}</cite>
+            </blockquote>
           </div>
         </div>
       </div>
+</div>
       
   <div className="container-fluid">
     <div className="row">
@@ -117,7 +124,8 @@ return (
       </div>
     </div>
   </div>
-  
+  <MoodsList/>
+  <MobileFoot/>
 
 
 
