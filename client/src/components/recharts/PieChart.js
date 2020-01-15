@@ -5,13 +5,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 
-const colors = ['#005c12', '#007a18', '#009c1f', '#00c227', '#00e32e'];
 
-const data = [{name: 'Distraught Days', value: 300}, {name: 'Sad Days', value: 300},
-                  {name: 'Meh Days', value: 300}, {name: 'Happy Days', value: 200},
-                  {name: 'Exuberant Days', value: 250}];
-
-const COLORS = ['#78469e', '#8d52ba', '#a05dd4', '#af66e8', '#c070ff'];
+const COLORS = ['#584A63', '#4B2C63', '#854DB0', '#AC64E3', '#CEABE8'];
 
                  
 
@@ -20,29 +15,55 @@ class Piechart extends Component {
     constructor() {
         super();
         this.state = {
-            abysmal: 0,
-            sad: 0,
-            meh: 0,
-            happy: 0,
-            ecstatic: 0,
-            message: ""
+            moods: {
+                abysmal: 0,
+                sad: 0,
+                meh: 0,
+                happy: 0,
+                ecstatic: 0
+            },
+            data: []
         }
       }
 
 
-    componentDidMount() {
-        const { user } = this.props.auth;
-        console.log(user)
-        let username = user.username;
-        axios.get('/moods/' + username)
+
+
+componentDidMount() {
+    const { user } = this.props.auth;
+    let username = user.username;
+    axios.get('/moods/' + username)
          .then(response => {
-           let data = response.data;
-            
+            const allMoods = response.data
+
+           const moodCounts = allMoods.reduce((acum, user) => {
+               if (user.mood in acum) {
+                   acum[user.mood]++
+               }
+               return acum;
+           }, {
+            abysmal: 0,
+            sad: 0,
+            meh: 0,
+            happy: 0,
+            ecstatic: 0
+           });
+
+           this.setState({moods: moodCounts})
+           this.setState({
+               data: [
+                {name: 'Distraught Days', value: this.state.moods.abysmal}, 
+                {name: 'Sad Days', value: this.state.moods.sad},
+                {name: 'Meh Days', value: this.state.moods.meh}, 
+                {name: 'Happy Days', value: this.state.moods.happy},
+                {name: 'Exuberant Days', value: this.state.moods.ecstatic}
+               ]
+           })
+
          })
          .catch((error) => {
             console.log(error);
          })
-
       }
 
     
@@ -52,15 +73,16 @@ return (
     <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
         <Tooltip />
         <Pie
-          data={data} 
-          cx={300} 
-          cy={200} 
-          labelLine={false}
-          outerRadius={80} 
-          fill="#8884d8"
+        
+        data={this.state.data} 
+        cx={300} 
+        cy={200} 
+        labelLine={false}
+        outerRadius={80} 
+        fill="#8884d8"
         >
-            <Tooltip />
-        	{data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
+        
+        	{this.state.data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
     </Pie>
     </PieChart>
 
