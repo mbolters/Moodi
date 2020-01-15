@@ -56,6 +56,8 @@ class App extends Component {
             <Route exact path="/barchart" component={BarChart} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <Route path="/moods" exact component={MoodsList} />
+              <Route path="/edit/:id" component={EditMood} />
               <PrivateRoute path="/create" component={CreateMood} />
             </Switch>
             

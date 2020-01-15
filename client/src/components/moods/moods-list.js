@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+
 import axios from 'axios';
 
 const Mood = props => (
@@ -22,7 +24,8 @@ export default class MoodsList extends Component {
       }
     
       componentDidMount() {
-        axios.get('http://localhost:5000/moods/')
+        //DAVIS: somehow need to get username here
+        axios.get('/moods/' + "erwin")
          .then(response => {
            this.setState({ moods: response.data });
          })
@@ -32,7 +35,7 @@ export default class MoodsList extends Component {
       }
 
       deleteMood(id) {
-        axios.delete('http://localhost:5000/moods/'+id)
+        axios.delete('/moods/'+id)
           .then(res => console.log(res.data));
         this.setState({
           moods: this.state.moods.filter(el => el._id !== id)
