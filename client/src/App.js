@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Navbar from "./components/layout/Navbar";
 import BarChart from "./components/recharts/BarChart";
+import PieChart from "./components/recharts/PieChart"
 
 
 import Landing from "./components/layout/Landing";
@@ -53,7 +54,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/barchart" component={BarChart} />
+            <Route exact path="/piechart" component={PieChart} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute path="/create" component={CreateMood} />

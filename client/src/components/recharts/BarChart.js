@@ -34,25 +34,41 @@ class Barchart extends Component {
             day4: {},
             day5: {},
             day6: {},
-            day7: {}
+            day7: {},
+            mood: {}
         }
       }
 
-componentDidMount() {
-    const { user } = this.props.auth;
-    console.log(user)
-    let username = user.username;
-    axios.get('/moods/usermoods')
+// componentDidMount() {
+//     const { user } = this.props.auth;
+//     console.log(user)
+//     let username = user.username;
+//     axios.get('/moods/usermoods')
 
-    .then((result) => {
+//     .then((result) => {
       
-      console.log("Help");
-    });
+//       console.log("Help");
+//     });
+
+    componentDidMount() {
+        const { user } = this.props.auth;
+        console.log(user)
+        let username = user.username;
+        axios.get('/moods/' + username)
+         .then(response => {
+           this.setState({ mood: response.data });
+           console.log(response.data);
+         })
+         .catch((error) => {
+            console.log(error);
+         })
+
+      }
 
     
-}
 
-// const data = [{name: 'Sad', uv: 7, pv: 7, amt: 7, url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/144/apple/237/loudly-crying-face_1f62d.png'}
+
+
 
 render () {
 return (
