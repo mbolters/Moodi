@@ -31,21 +31,16 @@ router.route('/add').post((req, res) => {
   .catch(err => res.status(400).json({mesage: 'Error: ' + err}));
 });
 
-router.route('/:id').get((req, res) => {
-  Mood.findById(req.params.id)
+router.route('/:username').get((req, res) => {
+  Mood.find({ username: req.params.username})
     .then(mood => res.json(mood)) 
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/usermood').get((req, res) => {
+router.route('/davishochs').get((req, res) => {
   // const username = req.params.id
-  Mood.find({ username: 'davishochs'})
-    .then(mood => {
-      // console.log(mood)
-      // const entries = mood.filter(user => user.username === username)
-      // res.json({usermoods: entries})
-      res.json({moods: mood})
-    }) 
+  Mood.find({ username: "davishochs"})
+    .then(moods => {res.json({moods})}) 
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
