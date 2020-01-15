@@ -30,7 +30,7 @@ router.route('/add').post((req, res) => {
 });
 
 router.route('/:username').get((req, res) => {
-  Mood.find({ username: req.params.username})
+  Mood.find({ username: req.params.username })
     .then(mood => res.json(mood)) 
     .catch(err => res.status(400).json('Error: ' + err));
 });
