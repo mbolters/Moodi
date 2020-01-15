@@ -7,8 +7,15 @@ import MobileFoot from '../layout/MobileFoot';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import "./create-mood.css";
+
+  import { ToastContainer, toast } from 'react-toastify';
+
+  import 'react-toastify/dist/ReactToastify.css'
 
 class CreateMood extends Component {
+
+
   constructor(props) {
     super(props);
 
@@ -81,8 +88,10 @@ class CreateMood extends Component {
     axios.post('/moods/add', mood)
 
     .then((result) => {
-      
       console.log("Mood added!");
+      toast("Mood was successfully saved!")
+    }).catch((ex) => {
+      toast(ex);
     });
  
   }
@@ -92,6 +101,7 @@ class CreateMood extends Component {
       <div className="main">   
         <Sidebar/>   
         <div className="container-fluid">
+          <ToastContainer />
         <h3>Create New Mood Log</h3>
         <form onSubmit={this.onSubmit}> 
           <div className="form-group"> 
