@@ -42,7 +42,8 @@ class CreateMood extends Component {
   onChangeName(e) {
     this.setState({
       name: e.target.value
-    });
+    }
+    );
   }
 
   onChangeMood(e) {
@@ -111,13 +112,23 @@ class CreateMood extends Component {
             </select>
           </div>
           <div className="form-group"> 
-            <label>Mood: </label>
-            <input  type="text"
-                required
+<div className="mood">
+  <label><input name="mood" type="radio" value="abysmal" required
                 className="form-control"
-                value={this.state.mood}
-                onChange={this.onChangeMood}
-                />
+                onChange={this.onChangeMood}/><span>😫</span></label>
+  <label><input name="mood" type="radio" value="sad" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>😕</span></label>
+  <label><input name="mood" type="radio" value="meh" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>😐</span></label>
+  <label><input name="mood" type="radio" value="happy" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>🙂</span></label>
+  <label><input name="mood" type="radio" value="ecstatic" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>😀</span></label>
+</div>
           </div>
           <div className="form-group"> 
             <label>Description: </label>
