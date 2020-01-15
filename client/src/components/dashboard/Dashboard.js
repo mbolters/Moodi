@@ -34,6 +34,7 @@ class Dashboard extends Component {
 
 render() {
     const { user } = this.props.auth;
+    console.log(user.username);
 return (
   
   <div className="main">
