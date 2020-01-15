@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Cell, Tooltip} from 'recharts';
+import { CartesianGrid, XAxis, YAxis, Cell } from 'recharts';
 import { BarChart, Bar } from 'recharts';
-import jwt_decode from "jwt-decode";
 import CustomXAxisLabel from "./CustomAxis";
 import axios from 'axios';
 import PropTypes from "prop-types";
