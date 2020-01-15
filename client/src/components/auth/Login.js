@@ -46,7 +46,6 @@ const userData = {
 };
 render() {
     const { errors } = this.state;
-    {console.log(errors)}
 return (
       <div className="container">
         <div style={{ marginTop: "4rem" }} className="row">
