@@ -10,7 +10,7 @@ class Sidebar extends Component {
   };
 
 render() {
-    const { user } = this.props.auth;
+    
 return (
   <div>
       <ul className="side-nav fixed transparent z-depth-0 hide-on-med-and-down">
