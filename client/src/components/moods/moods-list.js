@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css'
 
 
 import axios from 'axios';
-import { response } from 'express';
 
 const Mood = props => (
     <tr>
