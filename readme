@@ -53,4 +53,4 @@ npm i -g create-react-app
 
 npm i axios classnames jwt-decode react-redux react-router-dom redux redux-thunk
 
-npm i react-datepicker
+npm i react-datepicker ***install into client folder
