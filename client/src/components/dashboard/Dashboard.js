@@ -6,10 +6,9 @@ import axios from 'axios';
 import { logoutUser } from "../../actions/authActions";
 import Sidebar from '../../components/dashboard/Sidebar';
 import MobileFoot from '../layout/MobileFoot';
-import Piechart from '../recharts/PieChart';
 
 import MoodsList from "../../components/moods/moods-list.js";
-
+import Piechart from "../../components/recharts/PieChart"
 
 class Dashboard extends Component {
     onLogoutClick = e => {
@@ -58,7 +57,11 @@ return (
         </div>
       </div>
 </div>
-      
+<div className="container">
+    <div className="row">
+    <Piechart/>
+    </div>
+  </div>
   <div className="container-fluid">
     <div className="row">
       <div className="col s12 m4">
@@ -98,42 +101,10 @@ return (
         </div>
       </div>
     </div>
-    <Piechart />
-    <div className="row">
-      <div className="col s12 m8">
-        <div className="card">
-          <table className="bordered highlight">
-            <thead>
-              <tr>
-                <th colSpan="2">Historic Moods</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Monday: Sad</td>
-              </tr>
-              <tr>
-                <td>Tuesday: Happy</td>
-              </tr>
-              <tr>
-               <td>Wednesday: Sad</td>
-              </tr>
-              <tr>
-                <td>Thursday: Sad</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <MoodsList/>
   </div>
-  
-  <MoodsList/>
   <MobileFoot/>
-
-
-
-      </div>
+  </div>
 
     );
   }

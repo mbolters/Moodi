@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { loginUser } from "../../actions/authActions";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 
 import axios from 'axios';
 
 const Mood = props => (
     <tr>
-      <td>{props.mood.name}</td>
       <td>{props.mood.mood}</td>
-      <td>{props.mood.description}</td>
       <td>{props.mood.date.substring(0,10)}</td>
       <td>
-        <Link to={"/edit/"+props.mood._id}>edit</Link> | <a href="#" onClick={() => { props.deleteMood(props.mood._id) }}>delete</a>
+        <Link className="btn btn-primary" to={"/edit/"+props.mood._id}>edit</Link> <a href="#" className="btn red" onClick={() => { props.deleteMood(props.mood._id) }}>delete</a>
       </td>
     </tr>
   )
@@ -48,6 +48,7 @@ class MoodsList extends Component {
         this.setState({
           moods: this.state.moods.filter(el => el._id !== id)
         })
+        toast.error("Mood was successfully deleted")
       }
 
       moodList() {
@@ -57,22 +58,25 @@ class MoodsList extends Component {
       }
   render() {
     return (
-        <div>
-        <h3>Logged Moods</h3>
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Name</th>
-              <th>Mood</th>
-              <th>Description</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.moodList() }
-          </tbody>
-        </table>
+       <div className="row">
+       <ToastContainer autoClose={2000} />
+      <div className="col s12 m8">
+        <div className="card">
+          <table className="bordered highlight">
+            <thead>
+              <tr>
+                <th >Mood</th>
+                <th >Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.moodList()}
+            </tbody>
+          </table>
+        </div>
       </div>
+    </div>
     )
   }
 }
