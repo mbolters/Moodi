@@ -20,22 +20,22 @@ class MoodCalendar extends Component {
   }
 
 
-  componentDidMount() {
-    const { user } = this.props.auth;
-    let username = user.username;
-    axios.get('/moods/' + username)
-         .then(response => {
-        //     console.log(response.data)
+  //componentDidMount() {
+    // const { user } = this.props.auth;
+    // let username = user.username;
+    // axios.get('/moods/' + username)
+    //      .then(response => {
+    //     //     console.log(response.data)
         
-             const allMoods = response.data
+    //          const allMoods = response.data
 
-           const moodCounts = allMoods.reduce((acum, user) => {
-               let newDate = this.dateConversion(user.date);
-               console.log(newDate);
-               user.mood[newDate]
+    //        const moodCounts = allMoods.reduce((acum, user) => {
+    //            let newDate = this.dateConversion(user.date);
+    //            console.log(newDate);
+    //            user.mood[newDate]
                
-               return acum;
-           }, {});
+    //            return acum;
+    //        }, {});
 
         //    console.log(moodCounts);
         // let dates = new Map();
@@ -45,11 +45,11 @@ class MoodCalendar extends Component {
         //     console.log(dates);
         // }
 
-         })
-         .catch((error) => {
-            console.log(error);
-         })
-      }
+    //      })
+    //      .catch((error) => {
+    //         console.log(error);
+    //      })
+    //   }
   
 
  
