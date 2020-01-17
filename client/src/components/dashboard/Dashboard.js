@@ -6,6 +6,7 @@ import axios from 'axios';
 import { logoutUser } from "../../actions/authActions";
 import Sidebar from '../../components/dashboard/Sidebar';
 import MobileFoot from '../layout/MobileFoot';
+import Piechart from '../recharts/PieChart';
 
 import MoodsList from "../../components/moods/moods-list.js";
 import Piechart from "../../components/recharts/PieChart"
@@ -101,6 +102,7 @@ return (
         </div>
       </div>
     </div>
+    <Piechart />
     <div className="row">
       <div className="col s12 m8">
         <div className="card">
@@ -129,6 +131,7 @@ return (
       </div>
     </div>
   </div>
+  
   <MoodsList/>
   <MobileFoot/>
 

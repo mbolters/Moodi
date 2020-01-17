@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { PieChart, Pie, Sector, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Sector, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import axios from 'axios';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,8 +7,6 @@ import { loginUser } from "../../actions/authActions";
 
 
 const COLORS = ['#584A63', '#4B2C63', '#854DB0', '#AC64E3', '#CEABE8'];
-
-                 
 
 
 class Piechart extends Component {
@@ -69,21 +67,39 @@ componentDidMount() {
     
 render () {
 return (
+<<<<<<< HEAD
     <ResponsiveContainer width="100%" height={400}>
     <PieChart width={400} height={400} onMouseEnter={this.onPieEnter}>
+=======
+<ResponsiveContainer width="50%" height={400}>
+    <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+>>>>>>> 5f09b53103b5c74ec94661620459295b02028b09
         <Tooltip />
         <Pie
         
         data={this.state.data} 
         labelLine={false}
+<<<<<<< HEAD
         outerRadius={120} 
+=======
+        outerRadius={100} 
+>>>>>>> 5f09b53103b5c74ec94661620459295b02028b09
         fill="#8884d8"
+        label
         >
         
         	{this.state.data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
     </Pie>
+    <Legend/>
     </PieChart>
+<<<<<<< HEAD
     </ResponsiveContainer>
+=======
+</ResponsiveContainer>
+
+    
+
+>>>>>>> 5f09b53103b5c74ec94661620459295b02028b09
     )
 }
 }

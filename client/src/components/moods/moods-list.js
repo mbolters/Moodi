@@ -70,7 +70,6 @@ class MoodsList extends Component {
               <th>Mood</th>
               <th>Description</th>
               <th>Date</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
