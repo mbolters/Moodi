@@ -31,19 +31,33 @@ class CreateMood extends Component {
       mood: '',
       description: '',
       date: new Date(),
-      users: []
+      users: [],
+      morning: false
     }
   }
   
 
   componentDidMount() {
     const { user } = this.props.auth;
-
     this.setState({ 
       users: ['test user'],
       name: 'test user',
-      username: user.username
+      username: user.username,
+
     });
+  }
+
+  checkMorning() {
+    let timeNow = this.state.date.getHours();
+    if (timeNow <= 12) {
+      this.setState({
+        morning: true
+      })
+    } else if (timeNow > 12) {
+      this.setState({
+        morning: false
+      })
+    }
   }
 
   onChangeName(e) {
@@ -73,6 +87,7 @@ class CreateMood extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    this.checkMorning();
   
     
     const mood = {
@@ -81,6 +96,7 @@ class CreateMood extends Component {
       mood: this.state.mood,
       description: this.state.description,
       date: this.state.date,
+      morning: this.state.morning
     };
 
     console.log(mood);
