@@ -7,7 +7,6 @@ const users = require("./routes/api/users");
 const moods = require("./routes/moods");
 
 
-
 //Initialize
 const app = express();
 
