@@ -1,5 +1,10 @@
+//Dependencies
 const express = require("express");
-
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const users = require("./routes/api/users");
+const moods = require("./routes/moods");
 
 
 //Initialize
