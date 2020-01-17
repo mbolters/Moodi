@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { PieChart, Pie, Sector, Cell, Tooltip } from 'recharts';
+import { PieChart, Pie, Sector, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import axios from 'axios';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,8 +7,6 @@ import { loginUser } from "../../actions/authActions";
 
 
 const COLORS = ['#584A63', '#4B2C63', '#854DB0', '#AC64E3', '#CEABE8'];
-
-                 
 
 
 class Piechart extends Component {
@@ -69,7 +67,7 @@ componentDidMount() {
     
 render () {
 return (
-<div>
+<ResponsiveContainer width="50%" height={400}>
     <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
         <Tooltip />
         <Pie
@@ -78,16 +76,19 @@ return (
         cx={300} 
         cy={200} 
         labelLine={false}
-        outerRadius={80} 
+        outerRadius={100} 
         fill="#8884d8"
+        label
         >
         
         	{this.state.data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
     </Pie>
+    <Legend/>
     </PieChart>
+</ResponsiveContainer>
 
     
-</div>
+
     )
 }
 }

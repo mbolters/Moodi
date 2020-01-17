@@ -6,8 +6,9 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
 import Navbar from "./components/layout/Navbar";
-import BarChart from "./components/recharts/BarChart";
 import PieChart from "./components/recharts/PieChart"
+import Calendar from "./components/calendar/Calendar"
+
 
 
 import Landing from "./components/layout/Landing";
@@ -55,6 +56,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/piechart" component={PieChart} />
+            <Route exact path="/calendar" component={Calendar} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <Route path="/moods" exact component={MoodsList} />
