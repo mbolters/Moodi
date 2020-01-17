@@ -27,10 +27,13 @@ app.use(bodyParser.json());
 
 // DB Config
 //const db = require("./config/keys").mongoURI;
-
+// Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 // Connect to MongoDB
 mongoose
-  .connect("mongodb://localhost/moodi", { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB_URI  || "mongodb://localhost/moodi", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
