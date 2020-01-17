@@ -2,11 +2,16 @@ body {
   background-color: #f6f6f6;
   font-size: 13px;
   letter-spacing: 0.02rem;
+  margin-bottom: 70px;
 }
 
 h6 {
   font-size: 1.5rem;
   margin-top: 0;
+}
+
+.purple{
+  background-color: #A964DE!important;
 }
 
 .card,
@@ -27,6 +32,9 @@ h6 {
   .main {
     padding-left: 250px;
   }
+  .recharts-div{
+    margin-left: 300px;
+  }
 }
 /* nav */
 nav {
@@ -46,6 +54,7 @@ nav .nav-wrapper i,
 .navbar-fixed {
   height: 56px;
   line-height: 56px;
+  
 }
 
 .nav-wrapper ul a:hover {
@@ -60,7 +69,7 @@ nav .nav-wrapper i,
 
 /* sidenav */
 .side-nav {
-  position: absolute;
+  position: fixed;
 }
 .side-nav .divider {
   margin: 8px 0;
@@ -161,3 +170,51 @@ table tr:last-child {
 .add-button {
   font-size: 40px !important;
 }
+
+.recharts-wrapper{
+  width: 100%;
+}
+
+.side-nav{
+  left: 0;
+}
+
+.logout {
+  cursor: pointer;
+}
+
+/* blockquote code */
+
+blockquote {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-style: italic;
+  margin: 0.25em 0;
+  padding: 0.35em 40px;
+  line-height: 1.45;
+  position: relative;
+  color: #383838;
+  border-left: none;
+  }
+  
+  blockquote:before {
+  display: block;
+  padding-left: 10px;
+  content: "\201C";
+  font-size: 80px;
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  color: #7a7a7a;
+  }
+  
+  blockquote cite {
+  color: #999999;
+  font-size: 14px;
+  display: block;
+  margin-top: 5px;
+  }
+   
+  blockquote cite:before {
+  content: "\2014 \2009";
+  };
