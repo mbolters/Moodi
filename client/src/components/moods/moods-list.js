@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { loginUser } from "../../actions/authActions";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 
 import axios from 'axios';
@@ -48,6 +50,7 @@ class MoodsList extends Component {
         this.setState({
           moods: this.state.moods.filter(el => el._id !== id)
         })
+        toast.error("Mood was successfully deleted")
       }
 
       moodList() {
@@ -58,6 +61,7 @@ class MoodsList extends Component {
   render() {
     return (
         <div>
+    <ToastContainer autoClose={2000} />
         <h3>Logged Moods</h3>
         <table className="table">
           <thead className="thead-light">
