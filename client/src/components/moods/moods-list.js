@@ -6,6 +6,7 @@ import { loginUser } from "../../actions/authActions";
 
 
 import axios from 'axios';
+import { response } from 'express';
 
 const Mood = props => (
     <tr>
@@ -23,11 +24,21 @@ class MoodsList extends Component {
     constructor(props) {
         super(props);
         this.deleteMood = this.deleteMood.bind(this);
-        this.state = {moods: []};
+        this.state = {
+          moods: [],
+          morningMood: {},
+          eveningMood: {}
+        };
       }
     
+      
+
+
       componentDidMount() {
         //DAVIS: somehow need to get username here
+
+
+
         const { user } = this.props.auth;
         console.log(user)
         let username = user.username;

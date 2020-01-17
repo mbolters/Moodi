@@ -67,16 +67,16 @@ componentDidMount() {
     
 render () {
 return (
-<ResponsiveContainer width="50%" height={400}>
+<ResponsiveContainer width="99%" height={400}>
     <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
         <Tooltip />
         <Pie
         
         data={this.state.data} 
-        cx={300} 
+        cx={140} 
         cy={200} 
         labelLine={false}
-        outerRadius={100} 
+        outerRadius={80} 
         fill="#8884d8"
         label
         >
@@ -85,6 +85,7 @@ return (
     </Pie>
     <Legend/>
     </PieChart>
+    
 </ResponsiveContainer>
 
     
