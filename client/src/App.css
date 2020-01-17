@@ -20,6 +20,18 @@ h6 {
   box-shadow: 0 1px 0 0 darkviolet !important
 }
 
+[type="radio"]:not(:checked)+span, [type="radio"]:checked+span:before {
+  line-height: 10rem !important;
+  border: #5a5a5a !important;
+}
+
+[type="radio"]:checked+span:after{
+  padding-left: 0px !important;
+  background-color: darkviolet !important;
+  border: #5a5a5a !important;
+  line-height: 5rem !important;
+}
+
 .purple{
   background-color: #A964DE!important;
 }
