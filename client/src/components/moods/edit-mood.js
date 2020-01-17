@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
+import MobileFoot from '../layout/MobileFoot';
+import Sidebar from "../dashboard/Sidebar";
 
 export default class EditMood extends Component {
   constructor(props) {
@@ -17,30 +19,20 @@ export default class EditMood extends Component {
       name: '',
       mood: '',
       description: '',
-      date: new Date(),
-      users: []
+      date: new Date()
     }
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/moods/'+this.props.match.params.id)
+    console.log(this.props)
+    axios.get('/moods/'+ this.props.match.params.id)
       .then(response => {
         this.setState({
-          name: response.data.name,
           mood: response.data.mood,
-          description: response.data.description,
-          date: new Date(response.data.date)
+          description: response.data.description
         })   
       })
       .catch(function (error) {
-        console.log(error);
-      })
-
-    axios.get('http://localhost:5000/users/')
-      .then(response => {
-        this.setState({ users: response.data.map(user => user.name) });
-      })
-      .catch((error) => {
         console.log(error);
       })
   }
@@ -73,49 +65,43 @@ export default class EditMood extends Component {
     e.preventDefault();
 
     const mood = {
-      name: this.state.name,
       mood: this.state.mood,
-      description: this.state.description,
-      date: this.state.date,
+      description: this.state.description
     };
 
     console.log(mood);
 
-    axios.post('http://localhost:5000/moods/update/'+this.props.match.params.id, mood)
+    axios.post('/moods/update/'+ this.props.match.params.id, mood)
       .then(res => console.log(res.data));
     
-    window.location = '/';
+
   }
 
   render() {
     return (
-      <div>
-        <h3>Edit Mood Log</h3>
+      <div className="main">   
+        <Sidebar/>   
+        <div className="container-fluid">
+        <h3>Create New Mood Log</h3>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group"> 
-            <label>Name: </label>
-            <select ref="userInput"
+        <div className="form-group"> 
+            <div className="mood">
+            <label><input name="mood" type="radio" value="abysmal" required
                 className="form-control"
-                value={this.state.name}
-                onChange={this.onChangeName}>
-                {
-                  this.state.users.map(function(user) {
-                    return <option 
-                      key={user}
-                      value={user}>{user}
-                      </option>;
-                  })
-                }
-            </select>
+                onChange={this.onChangeMood}/><span>😫</span></label>
+            <label><input name="mood" type="radio" value="sad" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>😕</span></label>
+            <label><input name="mood" type="radio" value="meh" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>😐</span></label>
+            <label><input name="mood" type="radio" value="happy" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>🙂</span></label>
+            <label><input name="mood" type="radio" value="ecstatic" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>😀</span></label>
           </div>
-          <div className="form-group"> 
-            <label>Mood: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.mood}
-                onChange={this.onChangeMood}
-                />
           </div>
           <div className="form-group"> 
             <label>Description: </label>
@@ -138,6 +124,8 @@ export default class EditMood extends Component {
             <input type="submit" value="Edit Mood Log" className="btn btn-primary" />
           </div>
         </form>
+      </div>
+      <MobileFoot />
       </div>
     )
   }
