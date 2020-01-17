@@ -7,6 +7,7 @@ const MoodSchema = new Schema({
   mood: { type: String, required: false },
   description: { type: String, required: false },
   date: { type: Date, required: false },
+  morning:  {type: Boolean, require: false}
 }, {
   timestamps: true,
 });
