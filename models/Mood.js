@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MoodSchema = new Schema({
-  username: { type: String, required: true }, //time will be either morning or afternoon?
-  mood: { type: String, required: true },
-  description: { type: String, required: true },
-  date: { type: Date, required: true },
+  username: { type: String, required: false }, //time will be either morning or afternoon?
+  mood: { type: String, required: false },
+  description: { type: String, required: false },
+  date: { type: Date, required: false },
 }, {
   timestamps: true,
 });

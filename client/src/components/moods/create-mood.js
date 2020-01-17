@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
+import Sidebar from '../dashboard/Sidebar';
+import MobileFoot from '../layout/MobileFoot';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
 
-export default class CreateMood extends Component {
+class CreateMood extends Component {
   constructor(props) {
     super(props);
 
@@ -14,24 +20,30 @@ export default class CreateMood extends Component {
 
     this.state = {
       name: '',
+      username: '',
       mood: '',
       description: '',
       date: new Date(),
       users: []
     }
   }
+  
 
   componentDidMount() {
+    const { user } = this.props.auth;
+
     this.setState({ 
       users: ['test user'],
-      name: 'test user'
+      name: 'test user',
+      username: user.username
     });
   }
 
   onChangeName(e) {
     this.setState({
       name: e.target.value
-    });
+    }
+    );
   }
 
   onChangeMood(e) {
@@ -55,23 +67,33 @@ export default class CreateMood extends Component {
   onSubmit(e) {
     e.preventDefault();
   
+    
     const mood = {
       name: this.state.name,
+      username: this.state.username,
       mood: this.state.mood,
       description: this.state.description,
       date: this.state.date,
     };
-  
+
     console.log(mood);
-    
-    window.location = '/';
+
+    axios.post('/moods/add', mood)
+
+    .then((result) => {
+      
+      console.log("Mood added!");
+    });
+ 
   }
 
   render() {
     return (
-      <div>
+      <div className="main">   
+        <Sidebar/>   
+        <div className="container-fluid">
         <h3>Create New Mood Log</h3>
-        <form>
+        <form onSubmit={this.onSubmit}> 
           <div className="form-group"> 
             <label>Name: </label>
             <select ref="userInput"
@@ -90,13 +112,23 @@ export default class CreateMood extends Component {
             </select>
           </div>
           <div className="form-group"> 
-            <label>Mood: </label>
-            <input  type="text"
-                required
+<div className="mood">
+  <label><input name="mood" type="radio" value="abysmal" required
                 className="form-control"
-                value={this.state.mood}
-                onChange={this.onChangeMood}
-                />
+                onChange={this.onChangeMood}/><span>😫</span></label>
+  <label><input name="mood" type="radio" value="sad" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>😕</span></label>
+  <label><input name="mood" type="radio" value="meh" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>😐</span></label>
+  <label><input name="mood" type="radio" value="happy" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>🙂</span></label>
+  <label><input name="mood" type="radio" value="ecstatic" required
+                className="form-control"
+                onChange={this.onChangeMood}/><span>😀</span></label>
+</div>
           </div>
           <div className="form-group"> 
             <label>Description: </label>
@@ -118,10 +150,28 @@ export default class CreateMood extends Component {
            </div>
 
           <div className="form-group">
-            <input type="submit" value="Create Mood Log" className="btn btn-primary" onClick={this.onSubmit}/>
+            <input type="submit" value="Create Mood Log" className="btn btn-primary"/>
           </div>
         </form>
+        </div>
+        <MobileFoot/>
       </div>
     )
   }
 }
+
+CreateMood.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(CreateMood);

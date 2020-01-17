@@ -9,7 +9,7 @@ class Register extends Component {
     super();
     this.state = {
       name: "",
-      email: "",
+      username: "",
       password: "",
       password2: "",
       errors: {}
@@ -35,10 +35,11 @@ onSubmit = e => {
     e.preventDefault();
 const newUser = {
       name: this.state.name,
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password,
       password2: this.state.password2
     };
+    console.log(newUser)
 this.props.registerUser(newUser, this.props.history); 
   };
 render() {
@@ -77,16 +78,16 @@ return (
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
-                  id="email"
-                  type="email"
+                  value={this.state.username}
+                  error={errors.username}
+                  id="username"
+                  type="text"
                   className={classnames("", {
-                    invalid: errors.email
+                    invalid: errors.username
                   })}
                 />
-                <label htmlFor="email">Email</label>
-                <span className="red-text">{errors.email}</span>
+                <label htmlFor="username">Username</label>
+                <span className="red-text">{errors.username}</span>
               </div>
               <div className="input-field col s12">
                 <input
