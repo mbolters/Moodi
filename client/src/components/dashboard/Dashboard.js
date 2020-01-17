@@ -8,7 +8,7 @@ import Sidebar from '../../components/dashboard/Sidebar';
 import MobileFoot from '../layout/MobileFoot';
 
 import MoodsList from "../../components/moods/moods-list.js";
-
+import Piechart from "../../components/recharts/PieChart"
 
 class Dashboard extends Component {
     onLogoutClick = e => {
@@ -57,7 +57,11 @@ return (
         </div>
       </div>
 </div>
-      
+<div className="container">
+    <div className="row">
+    <Piechart/>
+    </div>
+  </div>
   <div className="container-fluid">
     <div className="row">
       <div className="col s12 m4">

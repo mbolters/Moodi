@@ -89,7 +89,7 @@ class CreateMood extends Component {
 
     .then((result) => {
       console.log("Mood added!");
-      toast("Mood was successfully saved!")
+      toast.success("Mood was successfully saved!")
     }).catch((ex) => {
       toast(ex);
     });
@@ -101,7 +101,7 @@ class CreateMood extends Component {
       <div className="main">   
         <Sidebar/>   
         <div className="container-fluid">
-          <ToastContainer />
+          <ToastContainer autoClose={2000}/>
         <h3>Create New Mood Log</h3>
         <form onSubmit={this.onSubmit}> 
           <div className="form-group"> 
