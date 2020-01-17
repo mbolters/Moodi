@@ -73,8 +73,6 @@ return (
         <Pie
         
         data={this.state.data} 
-        cx={300} 
-        cy={200} 
         labelLine={false}
         outerRadius={100} 
         fill="#8884d8"
