@@ -67,23 +67,14 @@ componentDidMount() {
     
 render () {
 return (
-<<<<<<< HEAD
-    <ResponsiveContainer width="100%" height={400}>
-    <PieChart width={400} height={400} onMouseEnter={this.onPieEnter}>
-=======
 <ResponsiveContainer width="50%" height={400}>
     <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
->>>>>>> 5f09b53103b5c74ec94661620459295b02028b09
         <Tooltip />
         <Pie
         
         data={this.state.data} 
         labelLine={false}
-<<<<<<< HEAD
-        outerRadius={120} 
-=======
         outerRadius={100} 
->>>>>>> 5f09b53103b5c74ec94661620459295b02028b09
         fill="#8884d8"
         label
         >
@@ -92,14 +83,10 @@ return (
     </Pie>
     <Legend/>
     </PieChart>
-<<<<<<< HEAD
-    </ResponsiveContainer>
-=======
 </ResponsiveContainer>
 
     
 
->>>>>>> 5f09b53103b5c74ec94661620459295b02028b09
     )
 }
 }
