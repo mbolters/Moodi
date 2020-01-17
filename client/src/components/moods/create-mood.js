@@ -109,6 +109,7 @@ class CreateMood extends Component {
     }).catch((ex) => {
       toast(ex);
     });
+    this.props.history.push('/dashboard');
  
   }
 
