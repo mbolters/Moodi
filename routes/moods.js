@@ -30,7 +30,7 @@ router.route('/add').post((req, res) => {
 
   newMood.save()
   .then(() => res.json({message: 'Mood added!'}))
-  .catch(err => res.status(400).json({mesage: 'Error: ' + err}));
+  .catch(err => res.status(400).json({message: 'Error: ' + err}));
 });
 
 router.route('/:username').get((req, res) => {
