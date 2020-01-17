@@ -71,7 +71,7 @@ class MoodsList extends Component {
               </tr>
             </thead>
             <tbody>
-            { this.moodList() }
+              {this.moodList()}
             </tbody>
           </table>
         </div>

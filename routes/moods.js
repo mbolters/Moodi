@@ -17,6 +17,7 @@ router.route('/add').post((req, res) => {
   const mood = req.body.mood;
   const description = req.body.description;
   const date = Date.parse(req.body.date);
+  const morning = req.body.morning;
 
   const newMood = new Mood({
     name,
@@ -24,6 +25,7 @@ router.route('/add').post((req, res) => {
     mood,
     description,
     date,
+    morning
   });
 
   newMood.save()
