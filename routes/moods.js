@@ -62,10 +62,9 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
   Mood.findById(req.params.id)
     .then(mood => {
-      mood.name = req.body.name;
+      console.log(mood)
       mood.mood = req.body.mood;
       mood.description = req.body.description;
-      mood.date = Date.parse(req.body.date);
 
       mood.save()
         .then(() => res.json('Mood updated!'))

@@ -139,23 +139,23 @@ class CreateMood extends Component {
             </select>
           </div>
           <div className="form-group"> 
-<div className="mood">
-  <label><input name="mood" type="radio" value="abysmal" required
+            <div className="mood">
+            <label><input name="mood" type="radio" value="abysmal" required
                 className="form-control"
                 onChange={this.onChangeMood}/><span>😫</span></label>
-  <label><input name="mood" type="radio" value="sad" required
+            <label><input name="mood" type="radio" value="sad" required
                 className="form-control"
                 onChange={this.onChangeMood}/><span>😕</span></label>
-  <label><input name="mood" type="radio" value="meh" required
+            <label><input name="mood" type="radio" value="meh" required
                 className="form-control"
                 onChange={this.onChangeMood}/><span>😐</span></label>
-  <label><input name="mood" type="radio" value="happy" required
+            <label><input name="mood" type="radio" value="happy" required
                 className="form-control"
                 onChange={this.onChangeMood}/><span>🙂</span></label>
-  <label><input name="mood" type="radio" value="ecstatic" required
+            <label><input name="mood" type="radio" value="ecstatic" required
                 className="form-control"
                 onChange={this.onChangeMood}/><span>😀</span></label>
-</div>
+          </div>
           </div>
           <div className="form-group"> 
             <label>Description: </label>
