@@ -8,6 +8,7 @@ import { loginUser } from "../../actions/authActions";
 import axios from 'axios';
 
 const Mood = props => (
+    //If all you need to do is to accept props and return JSX, use a functional component instead of a class component.
     <tr>
       <td>{props.mood.name}</td>
       <td>{props.mood.mood}</td>
@@ -50,6 +51,7 @@ class MoodsList extends Component {
         })
       }
 
+      //iterates through the list of mood items by using the map function. Each mood item is output with the Mood component.
       moodList() {
         return this.state.moods.map(currentmood => {
           return <Mood mood={currentmood} deleteMood={this.deleteMood} key={currentmood._id}/>;

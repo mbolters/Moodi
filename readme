@@ -12,11 +12,16 @@ express: sits on top of Node to make the routing, request handling, and respondi
 
 is-empty: global function that will come in handy when we use validator
 
-jsonwebtoken: used for authorization
+jsonwebtoken: used for authorization. claims in a JWT
+   are encoded as a JSON object that is used as the payload of a JSON
+   Web Signature (JWS) structure or as the plaintext of a JSON Web
+   Encryption (JWE) structure, enabling the claims to be digitally
+   signed or integrity protected with a Message Authentication Code
+   (MAC) and/or encrypted.
 
 mongoose: used to interact with MongoDB
 
-passport: used to authenticate requests, which it does through an extensible set of plugins known as strategies
+passport: used to authenticate requests, which it does through an extensible set of plugins known as strategies. You provide Passport a request to authenticate, and Passport provides hooks for controlling what occurs when authentication succeeds or fails.
 
 passport-jwt: passport strategy for authenticating with a JSON Web Token (JWT); lets you authenticate endpoints using a JWT
 
@@ -42,15 +47,14 @@ redux-thunk: middleware for Redux that allows us to directly access the dispatch
 
 npm init
 
-npm i node.js 
+npm install node.js 
 *NOTE* node.js must be installed in route and client folders
 
-npm i bcryptjs body-parser concurrently express is-empty jsonwebtoken mongoose passport passport-jwt validator
+npm i bcryptjs body-parser concurrently express is-empty jsonwebtoken mongoose passport passport-jwt validator axios classnames jwt-decode react-redux react-router-dom redux redux-thunk
+***install in route and client folders
 
 npm i -D nodemon
 
 npm i -g create-react-app
-
-npm i axios classnames jwt-decode react-redux react-router-dom redux redux-thunk
 
 npm i react-datepicker ***install into client folder
