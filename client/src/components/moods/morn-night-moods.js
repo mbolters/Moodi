@@ -56,7 +56,6 @@ class MornNightList extends Component {
            for (let item in data) {
             let dateHolder = new Date(data[item].date);
             let newDate = dateHolder.getDate();
-            console.log(newDate)
             if(dec === newDate) {
               if (data[item].morning) {
                 this.setState({
@@ -70,10 +69,9 @@ class MornNightList extends Component {
                   eveningMoodDate: data[item].date,
                   conditionEve: true
                 })
-                console.log(this.state.eveningMood)
               }
             } 
-            console.log(this.state.eveningMood)
+
             
            }
            
