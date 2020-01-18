@@ -18,10 +18,24 @@ class Dashboard extends Component {
 
 
   state = {
-    quote: []
+    quote: [],
+    moodLength: 0,
   }
 
   componentDidMount() {
+    const { user } = this.props.auth;
+    console.log(user)
+    let username = user.username;
+
+    //get total mood count
+    axios.get('/moods/' + username)
+     .then(response => {
+       this.setState({ moodLength: response.data.length });
+     })
+     .catch((error) => {
+        console.log(error);
+     })
+
     const API_KEY = "MToK4JPO7RRViLk7e7mmXgeF"
     axios.get(`https://cors-anywhere.herokuapp.com/http://quotes.rest/quote/search.json?category=inspire`, { headers: { "X-Theysaidso-Api-Secret": API_KEY}})
       .then(res => {
@@ -68,36 +82,36 @@ return (
         <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
-              <h6>25%</h6>
-              <p>Happy</p>
+              <h6>{this.state.moodLength}</h6>
+              <p>Moods Logged</p>
             </div>
             <div className="card-icon"><i className="material-icons medium valign">face</i></div>
           </div>
-          <div className="card-action"><a href="#">View</a></div>
+          <div className="card-action"><a href="#"></a></div>
         </div>
       </div>
       <div className="col s12 m4">
         <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
-              <h6>156</h6>
-              <p>Notes</p>
+              <h6>Feeling HAPPY</h6>
+              <p>Morning Summary</p>
             </div>
-            <div className="card-icon"><i className="material-icons medium valign">question_answer</i></div>
+            <div className="card-icon"><i className="material-icons medium valign">wb_sunny</i></div>
           </div>
-          <div className="card-action"><a href="#">View</a></div>
+          <div className="card-action"><a href="#"></a></div>
         </div>
       </div>
       <div className="col s12 m4">
         <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
-              <h6>50</h6>
-              <p>Report</p>
+              <h6>Feeling SAD</h6>
+              <p>Evening Summary</p>
             </div>
-            <div className="card-icon"><i className="material-icons medium valign">poll</i></div>
+            <div className="card-icon"><i className="material-icons medium valign">brightness_2</i></div>
           </div>
-          <div className="card-action"><a href="#">View</a></div>
+          <div className="card-action"><a href="#"></a></div>
         </div>
       </div>
     </div>
