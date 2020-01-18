@@ -6,14 +6,17 @@ import { loginUser } from "../../actions/authActions";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios';
+import MobileFoot from '../layout/MobileFoot';
+import Sidebar from '../dashboard/Sidebar'
 
 const Mood = props => (
     //If all you need to do is to accept props and return JSX, use a functional component instead of a class component.
     <tr>
       <td>{props.mood.mood}</td>
       <td>{props.mood.date.substring(0,10)}</td>
+      <td>{props.mood.description.substring(0,10)}</td>
       <td>
-        <Link className="btn btn-primary" to={"/edit/"+props.mood._id}>edit</Link> <a href="#" className="btn red" onClick={() => { props.deleteMood(props.mood._id) }}>delete</a>
+        <Link className="btn btn-primary purple darken-2" to={"/edit/"+props.mood._id}>edit</Link> <a href="#" className="btn red" onClick={() => { props.deleteMood(props.mood._id) }}>delete</a>
       </td>
     </tr>
   )
@@ -85,24 +88,33 @@ class MoodsList extends Component {
         })
         toast.error("Mood was successfully deleted")
       }
+      
+      // editMood(id) {
+      //   axios.post('/moods/update/'+ this.props.match.params.id, mood)
+      // .then(res => console.log(res.data));
+      // }
 
       //iterates through the list of mood items by using the map function. Each mood item is output with the Mood component.
       moodList() {
         return this.state.moods.map(currentmood => {
-          return <Mood mood={currentmood} deleteMood={this.deleteMood} key={currentmood._id}/>;
+          return <Mood mood={currentmood} deleteMood={this.deleteMood}  key={currentmood._id}/>;
         })
       }
   render() {
     return (
+      <div className="main">
+        <Sidebar/> 
        <div className="row">
+         
        <ToastContainer autoClose={2000} />
       <div className="col s12 m8">
         <div className="card">
           <table className="bordered highlight">
             <thead>
               <tr>
-                <th >Mood</th>
-                <th >Date</th>
+                <th>Mood</th>
+                <th>Date</th>
+                <th>Entry</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -112,6 +124,8 @@ class MoodsList extends Component {
           </table>
         </div>
       </div>
+      <MobileFoot/>
+    </div>
     </div>
     )
   }
