@@ -5,10 +5,7 @@ import PropTypes from "prop-types";
 import { loginUser } from "../../actions/authActions";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-
-
 import axios from 'axios';
-import { response } from 'express';
 
 const Mood = props => (
     <tr>
