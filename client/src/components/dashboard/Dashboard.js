@@ -20,9 +20,18 @@ class Dashboard extends Component {
 
   state = {
     quote: [],
-    moodLength: 0,
+    moods: [],
+    morningMoods: [],
+    eveningMoods: [],
   }
 
+  summarizeMorning(){
+  
+  }
+
+  summarizeEvening() {
+
+  }
   componentDidMount() {
     const { user } = this.props.auth;
     console.log(user)
@@ -31,11 +40,16 @@ class Dashboard extends Component {
     //get total mood count
     axios.get('/moods/' + username)
      .then(response => {
-       this.setState({ moodLength: response.data.length });
+      this.setState({ moods: response.data });
+      this.setState({morningMoods: this.state.moods.filter(el => el.morning == true)});
+      this.setState({eveningMoods: this.state.moods.filter(el => el.morning == false)});
+      this.summarizeMorning();
+      this.summarizeEvening();
      })
      .catch((error) => {
         console.log(error);
      })
+
 
     const API_KEY = "MToK4JPO7RRViLk7e7mmXgeF"
     axios.get(`https://cors-anywhere.herokuapp.com/http://quotes.rest/quote/search.json?category=inspire`, { headers: { "X-Theysaidso-Api-Secret": API_KEY}})
@@ -49,7 +63,6 @@ class Dashboard extends Component {
 
 render() {
     const { user } = this.props.auth;
-    console.log(user.username);
 return (
   
   <div className="main">
@@ -83,7 +96,7 @@ return (
         <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
-              <h6>{this.state.moodLength}</h6>
+              <h6>{this.state.moods.length}</h6>
               <p>Moods Logged</p>
             </div>
             <div className="card-icon"><i className="material-icons medium valign">face</i></div>
@@ -95,7 +108,7 @@ return (
         <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
-              <h6>Feeling HAPPY</h6>
+              <h6> - Feeling HAPPY</h6>
               <p>Morning Summary</p>
             </div>
             <div className="card-icon"><i className="material-icons medium valign">wb_sunny</i></div>
