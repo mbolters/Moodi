@@ -60,7 +60,9 @@ class Dashboard extends Component {
         }
       }
       let floatPos = (this.state.happyMood / this.state.totalMoods) * 100;
+      floatPos = Math.floor(floatPos * 100) / 100;
       let floatNeg = (this.state.sadMood / this.state.totalMoods) * 100;
+      floatNeg = Math.floor(floatNeg * 100) / 100;
 
       this.setState({
         happyAverage: floatPos,
@@ -120,8 +122,9 @@ return (
             <div className="card-text">
               <h6>{this.state.moods.length}</h6>
               <p>Moods Logged</p>
+              <h6 style={{visibility: "hidden"}}>holder</h6>
             </div>
-            <div className="card-icon"><i className="material-icons medium valign">face</i></div>
+            <div className="card-icon"><i className="material-icons medium valign">library_books</i></div>
           </div>
           <div className="card-action"><a href="#"></a></div>
         </div>
@@ -134,7 +137,7 @@ return (
               <p>Average Happy Mood</p>
               <h6>{this.state.happyAverage}%</h6>
             </div>
-            <div className="card-icon"><i className="material-icons medium valign">wb_sunny</i></div>
+            <div className="card-icon"><i className="material-icons medium valign">mood</i></div>
           </div>
           <div className="card-action"><a href="#"></a></div>
         </div>
@@ -148,7 +151,7 @@ return (
               <h6>{this.state.sadAverage}%</h6>
 
             </div>
-            <div className="card-icon"><i className="material-icons medium valign">brightness_2</i></div>
+            <div className="card-icon"><i className="material-icons medium valign">mood_bad</i></div>
           </div>
           <div className="card-action"><a href="#"></a></div>
         </div>

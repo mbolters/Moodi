@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css'
 
 
 class Login extends Component {
@@ -29,6 +32,8 @@ if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors
       });
+      
+
     }
   }
 onChange = e => {
@@ -36,11 +41,12 @@ onChange = e => {
   };
 onSubmit = e => {
     e.preventDefault();
-const userData = {
+    const { errors } = this.state;
+    const userData = {
       username: this.state.username,
       password: this.state.password
     };
-
+    toast.success("Successfully logged in!")
     this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
     
 };

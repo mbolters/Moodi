@@ -21,8 +21,10 @@ class MornNightList extends Component {
         this.state = {
           moods: [],
           morningMood: '',
+          mornDes: '',
           morningMoodDate: '',
           eveningMood: '',
+          eveDes: '',
           eveningMoodDate: '',
           conditionMorn: false,
           conditionEve: false,
@@ -61,13 +63,15 @@ class MornNightList extends Component {
                 this.setState({
                   morningMood: data[item].mood,
                   morningMoodDate: data[item].date,
-                  conditionMorn: true
+                  conditionMorn: true,
+                  mornDes: data[item].description
                 })
               } else {
                 this.setState({
                   eveningMood: data[item].mood,
                   eveningMoodDate: data[item].date,
-                  conditionEve: true
+                  conditionEve: true,
+                  eveDes: data[item].description
                 })
               }
             } 
@@ -116,11 +120,13 @@ class MornNightList extends Component {
             <thead>
               <tr>
                 <th>Morning Mood</th>
+                <th>Entry</th>
               </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>{this.state.conditionMorn ? this.state.morningMood : this.state.noMood}</td>
+                    <td>{this.state.mornDes}</td>
                 </tr>
             </tbody>
           </table>
@@ -132,11 +138,13 @@ class MornNightList extends Component {
             <thead>
               <tr>
                 <th>Evening Mood</th>
+                <th>Entry</th>
               </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>{this.state.conditionEve ? this.state.eveningMood : this.state.noMood}</td>
+                    <td>{this.state.eveDes}</td>
                 </tr>
             </tbody>
           </table>
