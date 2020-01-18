@@ -9,6 +9,7 @@ import MobileFoot from '../layout/MobileFoot';
 
 import MoodsList from "../../components/moods/moods-list.js";
 import Piechart from "../../components/recharts/PieChart"
+import MornEveMood from "../../components/moods/morn-night-moods"
 
 class Dashboard extends Component {
     onLogoutClick = e => {
@@ -22,6 +23,11 @@ class Dashboard extends Component {
     moods: [],
     morningMoods: [],
     eveningMoods: [],
+    totalMoods: 0,
+    happyMood: 0,
+    sadMood: 0,
+    happyAverage: 0,
+    sadAverage: 0
   }
 
   summarizeMorning(){
@@ -33,17 +39,34 @@ class Dashboard extends Component {
   }
   componentDidMount() {
     const { user } = this.props.auth;
-    console.log(user)
+    
     let username = user.username;
 
     //get total mood count
     axios.get('/moods/' + username)
      .then(response => {
+       let data = response.data;
       this.setState({ moods: response.data });
-      this.setState({morningMoods: this.state.moods.filter(el => el.morning == true)});
-      this.setState({eveningMoods: this.state.moods.filter(el => el.morning == false)});
-      this.summarizeMorning();
-      this.summarizeEvening();
+      
+      for ( let item in data ) {
+
+        if ((data[item].mood === 'ecstatic') || (data[item].mood === 'happy')) {
+          this.state.totalMoods++;
+          this.state.happyMood++;
+
+        } else if ((data[item].mood === 'abysmal') || (data[item].mood === 'sad')) {
+          this.state.totalMoods++;
+          this.state.sadMood++;
+        }
+      }
+      let floatPos = (this.state.happyMood / this.state.totalMoods) * 100;
+      let floatNeg = (this.state.sadMood / this.state.totalMoods) * 100;
+
+      this.setState({
+        happyAverage: floatPos,
+        sadAverage: floatNeg
+      })
+
      })
      .catch((error) => {
         console.log(error);
@@ -107,8 +130,9 @@ return (
         <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
-              <h6> - Feeling HAPPY</h6>
-              <p>Morning Summary</p>
+              <h6>Happy Average</h6>
+              <p>Average Happy Mood</p>
+              <h6>{this.state.happyAverage}%</h6>
             </div>
             <div className="card-icon"><i className="material-icons medium valign">wb_sunny</i></div>
           </div>
@@ -119,8 +143,10 @@ return (
         <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
-              <h6>Feeling SAD</h6>
-              <p>Evening Summary</p>
+              <h6>Sad Average</h6>
+              <p>Average Sad Mood</p>
+              <h6>{this.state.sadAverage}%</h6>
+
             </div>
             <div className="card-icon"><i className="material-icons medium valign">brightness_2</i></div>
           </div>
@@ -128,7 +154,7 @@ return (
         </div>
       </div>
     </div>
-    <MoodsList/>
+    <MornEveMood/>
   </div>
   <MobileFoot/>
   </div>

@@ -8,6 +8,7 @@ import store from "./store";
 import Navbar from "./components/layout/Navbar";
 import PieChart from "./components/recharts/PieChart"
 import Calendar from "./components/calendar/Calendar"
+import MornEveMood from "./components/moods/morn-night-moods"
 
 
 
@@ -56,6 +57,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/piechart" component={PieChart} />
             <Route exact path="/calendar" component={Calendar} />
+            <Route exact path="/morn" component={MornEveMood} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <Route path="/moods" exact component={MoodsList} />
