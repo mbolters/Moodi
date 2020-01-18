@@ -50,11 +50,11 @@ componentDidMount() {
            this.setState({moods: moodCounts})
            this.setState({
                data: [
-                {name: 'Distraught Days', value: this.state.moods.abysmal}, 
+                {name: 'Abysmal Days', value: this.state.moods.abysmal}, 
                 {name: 'Sad Days', value: this.state.moods.sad},
                 {name: 'Meh Days', value: this.state.moods.meh}, 
                 {name: 'Happy Days', value: this.state.moods.happy},
-                {name: 'Exuberant Days', value: this.state.moods.ecstatic}
+                {name: 'Ecstatic Days', value: this.state.moods.ecstatic}
                ]
            })
 
