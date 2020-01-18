@@ -6,10 +6,9 @@ import axios from 'axios';
 import { logoutUser } from "../../actions/authActions";
 import Sidebar from '../../components/dashboard/Sidebar';
 import MobileFoot from '../layout/MobileFoot';
-import Piechart from '../recharts/PieChart';
 
 import MoodsList from "../../components/moods/moods-list.js";
-
+import Piechart from "../../components/recharts/PieChart"
 
 class Dashboard extends Component {
     onLogoutClick = e => {
@@ -19,10 +18,38 @@ class Dashboard extends Component {
 
 
   state = {
-    quote: []
+    quote: [],
+    moods: [],
+    morningMoods: [],
+    eveningMoods: [],
   }
 
+  summarizeMorning(){
+  
+  }
+
+  summarizeEvening() {
+
+  }
   componentDidMount() {
+    const { user } = this.props.auth;
+    console.log(user)
+    let username = user.username;
+
+    //get total mood count
+    axios.get('/moods/' + username)
+     .then(response => {
+      this.setState({ moods: response.data });
+      this.setState({morningMoods: this.state.moods.filter(el => el.morning == true)});
+      this.setState({eveningMoods: this.state.moods.filter(el => el.morning == false)});
+      this.summarizeMorning();
+      this.summarizeEvening();
+     })
+     .catch((error) => {
+        console.log(error);
+     })
+
+
     const API_KEY = "MToK4JPO7RRViLk7e7mmXgeF"
     axios.get(`https://cors-anywhere.herokuapp.com/http://quotes.rest/quote/search.json?category=inspire`, { headers: { "X-Theysaidso-Api-Secret": API_KEY}})
       .then(res => {
@@ -35,7 +62,6 @@ class Dashboard extends Component {
 
 render() {
     const { user } = this.props.auth;
-    console.log(user.username);
 return (
   
   <div className="main">
@@ -58,82 +84,54 @@ return (
         </div>
       </div>
 </div>
-      
+<div className="container">
+    <div className="row">
+    <Piechart/>
+    </div>
+  </div>
   <div className="container-fluid">
     <div className="row">
       <div className="col s12 m4">
         <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
-              <h6>25%</h6>
-              <p>Happy</p>
+              <h6>{this.state.moods.length}</h6>
+              <p>Moods Logged</p>
             </div>
             <div className="card-icon"><i className="material-icons medium valign">face</i></div>
           </div>
-          <div className="card-action"><a href="#">View</a></div>
+          <div className="card-action"><a href="#"></a></div>
         </div>
       </div>
       <div className="col s12 m4">
         <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
-              <h6>156</h6>
-              <p>Notes</p>
+              <h6> - Feeling HAPPY</h6>
+              <p>Morning Summary</p>
             </div>
-            <div className="card-icon"><i className="material-icons medium valign">question_answer</i></div>
+            <div className="card-icon"><i className="material-icons medium valign">wb_sunny</i></div>
           </div>
-          <div className="card-action"><a href="#">View</a></div>
+          <div className="card-action"><a href="#"></a></div>
         </div>
       </div>
       <div className="col s12 m4">
         <div className="card purple white-text">
           <div className="card-content valign-wrapper">
             <div className="card-text">
-              <h6>50</h6>
-              <p>Report</p>
+              <h6>Feeling SAD</h6>
+              <p>Evening Summary</p>
             </div>
-            <div className="card-icon"><i className="material-icons medium valign">poll</i></div>
+            <div className="card-icon"><i className="material-icons medium valign">brightness_2</i></div>
           </div>
-          <div className="card-action"><a href="#">View</a></div>
+          <div className="card-action"><a href="#"></a></div>
         </div>
       </div>
     </div>
-    <Piechart />
-    <div className="row">
-      <div className="col s12 m8">
-        <div className="card">
-          <table className="bordered highlight">
-            <thead>
-              <tr>
-                <th colSpan="2">Historic Moods</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Monday: Sad</td>
-              </tr>
-              <tr>
-                <td>Tuesday: Happy</td>
-              </tr>
-              <tr>
-               <td>Wednesday: Sad</td>
-              </tr>
-              <tr>
-                <td>Thursday: Sad</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <MoodsList/>
   </div>
-  
-  <MoodsList/>
   <MobileFoot/>
-
-
-
-      </div>
+  </div>
 
     );
   }
