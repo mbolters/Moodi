@@ -67,7 +67,7 @@ componentDidMount() {
     
 render () {
 return (
-<ResponsiveContainer width="99%" height={400}>
+<ResponsiveContainer width="99%" height={600}>
     <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
         <Tooltip />
         <Pie
