@@ -39,7 +39,6 @@ class MoodsList extends Component {
 
 
         const { user } = this.props.auth;
-        console.log(user)
         let username = user.username;
         axios.get('/moods/' + username)
          .then(response => {
