@@ -100,6 +100,8 @@ class CreateMood extends Component {
       
       console.log("Mood added!");
     });
+
+    //after submit, redirect to dashboard
     this.props.history.push('/dashboard');
  
   }
