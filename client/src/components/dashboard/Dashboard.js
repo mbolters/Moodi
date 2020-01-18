@@ -9,6 +9,7 @@ import MobileFoot from '../layout/MobileFoot';
 
 import MoodsList from "../../components/moods/moods-list.js";
 import Piechart from "../../components/recharts/PieChart"
+import MornEveMood from "../../components/moods/morn-night-moods"
 
 class Dashboard extends Component {
     onLogoutClick = e => {
@@ -115,7 +116,7 @@ return (
         </div>
       </div>
     </div>
-    <MoodsList/>
+    <MornEveMood/>
   </div>
   <MobileFoot/>
   </div>

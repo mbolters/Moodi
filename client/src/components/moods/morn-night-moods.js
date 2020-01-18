@@ -10,22 +10,23 @@ import axios from 'axios';
 const Mood = props => (
     <tr>
       <td>{props.mood.mood}</td>
-      <td>{props.mood.date.substring(0,10)}</td>
-      <td>
-        <Link className="btn btn-primary" to={"/edit/"+props.mood._id}>edit</Link> <a href="#" className="btn red" onClick={() => { props.deleteMood(props.mood._id) }}>delete</a>
-      </td>
+
     </tr>
   )
 
-class MoodsList extends Component {
+class MornNightList extends Component {
     constructor(props) {
         super(props);
         this.deleteMood = this.deleteMood.bind(this);
         this.state = {
           moods: [],
           morningMood: '',
+          morningMoodDate: '',
           eveningMood: '',
-          dateChecker: null
+          eveningMoodDate: '',
+          conditionMorn: false,
+          conditionEve: false,
+          noMood: "No moods to display."
         };
       }
     
@@ -53,19 +54,26 @@ class MoodsList extends Component {
            
            
            for (let item in data) {
-            if(dec === data[item].date.getDate()) {
+            let dateHolder = new Date(data[item].date);
+            let newDate = dateHolder.getDate();
+            console.log(newDate)
+            if(dec === newDate) {
               if (data[item].morning) {
                 this.setState({
-                  morningMood: data[item].mood
+                  morningMood: data[item].mood,
+                  morningMoodDate: data[item].date,
+                  conditionMorn: true
                 })
               } else {
                 this.setState({
-                  eveningMood: data[item].mood
+                  eveningMood: data[item].mood,
+                  eveningMoodDate: data[item].date,
+                  conditionEve: true
                 })
+                console.log(this.state.eveningMood)
               }
-            } else {
-              return noMood;
-            }
+            } 
+            console.log(this.state.eveningMood)
             
            }
            
@@ -86,10 +94,19 @@ class MoodsList extends Component {
         toast.error("Mood was successfully deleted")
       }
 
-      moodList() {
-        return this.state.moods.map(currentmood => {
-          return <Mood mood={currentmood} deleteMood={this.deleteMood} key={currentmood._id}/>;
-        })
+      mornMood() {
+        // return this.state.moods.map(currentmood => {
+        //   return <Mood mood={morningMood} deleteMood={this.deleteMood} key={currentmood._id}/>;
+        // })
+        return  <Mood mood={this.state.morningMood}  key={123}/>
+      }
+      eveMood() {
+        // return this.state.moods.map(currentmood => {
+        //   return <Mood mood={morningMood} deleteMood={this.deleteMood} key={currentmood._id}/>;
+        // })
+        return  <Mood mood={this.state.eveningMood}  key={124}> 
+
+                </Mood>
       }
   render() {
     return (
@@ -100,13 +117,29 @@ class MoodsList extends Component {
           <table className="bordered highlight">
             <thead>
               <tr>
-                <th >Mood</th>
-                <th >Date</th>
-                <th>Action</th>
+                <th>Morning Mood</th>
               </tr>
             </thead>
             <tbody>
-              {this.moodList()}
+                <tr>
+                    <td>{this.state.conditionMorn ? this.state.morningMood : this.state.noMood}</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div className="col s12 m8">
+        <div className="card">
+          <table className="bordered highlight">
+            <thead>
+              <tr>
+                <th>Evening Mood</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{this.state.conditionEve ? this.state.eveningMood : this.state.noMood}</td>
+                </tr>
             </tbody>
           </table>
         </div>
@@ -116,7 +149,7 @@ class MoodsList extends Component {
   }
 }
 
-MoodsList.propTypes = {
+MornNightList.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -130,5 +163,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { loginUser }
-)(MoodsList);
-
+)(MornNightList);
