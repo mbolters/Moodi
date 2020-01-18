@@ -32,12 +32,24 @@ class CreateMood extends Component {
       description: '',
       date: new Date(),
       users: [],
-      morning: false
+      morning: null,
+      timeNow: null
     }
   }
   
 
   componentDidMount() {
+    this.state.timeNow = this.state.date.getHours();
+    console.log(this.state.timeNow);
+    if (this.state.timeNow <= 12) {
+      this.setState({
+        morning: true
+      })
+    } else if (this.state.timeNow > 12) {
+      this.setState({
+        morning: false
+      })
+    }
     const { user } = this.props.auth;
     this.setState({ 
       users: ['test user'],
@@ -47,18 +59,6 @@ class CreateMood extends Component {
     });
   }
 
-  checkMorning() {
-    let timeNow = this.state.date.getHours();
-    if (timeNow <= 12) {
-      this.setState({
-        morning: true
-      })
-    } else if (timeNow > 12) {
-      this.setState({
-        morning: false
-      })
-    }
-  }
 
   onChangeName(e) {
     this.setState({
@@ -87,7 +87,9 @@ class CreateMood extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.checkMorning();
+
+
+
   
     
     const mood = {
@@ -120,10 +122,10 @@ class CreateMood extends Component {
       <div className="main">   
         <Sidebar/>   
         <div className="container-fluid">
-        <h3>How are you feeling?</h3>
+        <h4>How are you feeling?</h4>
         <form onSubmit={this.onSubmit} className= "input-field"> 
           <ToastContainer autoClose={2000}/>
-        <h3>Create New Mood Log</h3>
+        <h4>Create New Mood Log</h4>
           <div className="form-group"> 
           </div>
 

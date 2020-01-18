@@ -109,7 +109,7 @@ return (
                     id="password2"
                     type="password"
                     className={classnames("", {
-                      invalid: errors.password2
+                      invalid: errors.toast
                     })}
                   />
                   <label htmlFor="password2">Confirm Password</label>
