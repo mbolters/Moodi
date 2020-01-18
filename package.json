@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "description": "**Authentication",
   "main": "server.js",
-  "engines": {
-    "node": "12.13.0"
-  },
+
   "scripts": {
     "client-install": "npm install --prefix client",
-    "build": "react-scripts build",
+    "build": "npm build",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
