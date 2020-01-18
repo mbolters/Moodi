@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios';
 
 const Mood = props => (
+    //If all you need to do is to accept props and return JSX, use a functional component instead of a class component.
     <tr>
       <td>{props.mood.mood}</td>
       <td>{props.mood.date.substring(0,10)}</td>
@@ -60,6 +61,7 @@ class MoodsList extends Component {
         toast.error("Mood was successfully deleted")
       }
 
+      //iterates through the list of mood items by using the map function. Each mood item is output with the Mood component.
       moodList() {
         return this.state.moods.map(currentmood => {
           return <Mood mood={currentmood} deleteMood={this.deleteMood} key={currentmood._id}/>;

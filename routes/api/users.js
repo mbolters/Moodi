@@ -23,6 +23,7 @@ router.post("/register", (req, res) => {
     if (!isValid) {
       return res.status(400).json(errors);
     }
+  //If valid input, use MongoDB’s User.findOne() to see if the user already exists
   User.findOne({ username: req.body.username }).then(user => {
       if (user) {
         return res.status(400).json({ username: "Username already exists" });
