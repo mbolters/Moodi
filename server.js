@@ -47,6 +47,8 @@ app.use('/routes/moods', moods);
 
 //Serve static assets
 if(process.env.NODE_ENV === 'production'){
+  app.use("server.js");
+
   app.get('*', (req, res) => {
     res.sendFile(path.resolve( './client'))
   });
