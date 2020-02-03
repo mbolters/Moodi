@@ -1,5 +1,5 @@
 ## Overview
-Welcome to the final project! This is a culmination of everything you have learned in this course. With your team, you will design, execute and deploy a MERN stack application that solves a real-world problem. Again, you will work collaboratively using agile development methodologies. You will also work individually preparing and polishing your portfolio and resumes.
+MERN stack application with user authentication that allows users to record and write journal entries for daily mood. Moods are saved and returned in data charts to review entries with a motivational quote API.
 
 
 ### Programs Used: 
