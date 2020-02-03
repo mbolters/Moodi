@@ -16,7 +16,7 @@ const Mood = props => (
       <td>{props.mood.date.substring(0,10)}</td>
       <td>{props.mood.description.substring(0,10)}</td>
       <td>
-        <Link className="btn btn-primary purple darken-2" to={"/edit/"+props.mood._id}>edit</Link> <a href="#" className="btn red" onClick={() => { props.deleteMood(props.mood._id) }}>delete</a>
+        <Link className="btn btn-primary purple darken-2" to={"/edit/"+props.mood._id}>edit</Link> <a href="/" className="btn red" onClick={() => { props.deleteMood(props.mood._id) }}>delete</a>
       </td>
     </tr>
   )

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {Calendar, TileContent} from 'react-calendar';
+import {Calendar} from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import axios from 'axios';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";

@@ -25,7 +25,7 @@ class CreateMood extends Component {
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
-    this.state = {
+    this.setState ({
       name: '',
       username: '',
       mood: '',
@@ -34,18 +34,19 @@ class CreateMood extends Component {
       users: [],
       morning: null,
       timeNow: null
-    }
+    })
   }
   
 
   componentDidMount() {
-    this.state.timeNow = this.state.date.getHours();
-    console.log(this.state.timeNow);
-    if (this.state.timeNow <= 12) {
+    this.setState({
+      timeNow: this.date
+    })
+    if (this.timeNow <= 12) {
       this.setState({
         morning: true
       })
-    } else if (this.state.timeNow > 12) {
+    } else if (this.timeNow > 12) {
       this.setState({
         morning: false
       })
@@ -136,23 +137,23 @@ class CreateMood extends Component {
                   <label><input name="mood" type="radio" value="abysmal" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span style={{fontSize:"5rem"}}>😫</span></label>
+                                <span role= "img" aria-label="Abysmal" style={{fontSize:"5rem"}}>😫</span></label>
                   <label><input name="mood" type="radio" value="sad" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span style={{fontSize:"5rem"}}>😕</span></label>
+                                <span  role= "img" aria-label="Sad" style={{fontSize:"5rem"}}>😕</span></label>
                   <label><input name="mood" type="radio" value="meh" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span style={{fontSize:"5rem"}}>😐</span></label>
+                                <span  role= "img" aria-label="Average" style={{fontSize:"5rem"}}>😐</span></label>
                   <label><input name="mood" type="radio" value="happy" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span style={{fontSize:"5rem"}}>🙂</span></label>
+                                <span role= "img" aria-label="Happy" style={{fontSize:"5rem"}}>🙂</span></label>
                   <label><input name="mood" type="radio" value="ecstatic" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span style={{fontSize:"5rem"}}>😀</span></label>
+                                <span  role= "img" aria-label="Ecstatic" style={{fontSize:"5rem"}}>😀</span></label>
                 </div>
               </div>
             </div>
@@ -163,7 +164,7 @@ class CreateMood extends Component {
               <input  type="text"
                   required
                   className="form-control"
-                  value={this.state.description}
+                  value={this.description}
                   onChange={this.onChangeDescription}
                   />
             </div>
@@ -173,7 +174,7 @@ class CreateMood extends Component {
               <label>Date: </label>
               <div>
                 <DatePicker
-                  selected={this.state.date}
+                  selected={this.date}
                   onChange={this.onChangeDate}
                 />
               </div> 

@@ -1,5 +1,4 @@
 import { GET_ERRORS } from "../actions/types";
-import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css'
 const initialState = {error: ''};

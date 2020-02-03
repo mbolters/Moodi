@@ -17,18 +17,18 @@ class Dashboard extends Component {
     this.props.logoutUser();
   };
 
-
-  state = {
-    quote: [],
-    moods: [],
-    morningMoods: [],
-    eveningMoods: [],
-    totalMoods: 0,
-    happyMood: 0,
-    sadMood: 0,
-    happyAverage: 0,
-    sadAverage: 0
-  }
+    state = {
+      quote: [],
+      moods: [],
+      morningMoods: [],
+      eveningMoods: [],
+      totalMoods: 0,
+      happyMood: 0,
+      sadMood: 0,
+      happyAverage: 0,
+      sadAverage: 0
+    }
+  
 
   summarizeMorning(){
   
@@ -51,12 +51,12 @@ class Dashboard extends Component {
       for ( let item in data ) {
 
         if ((data[item].mood === 'ecstatic') || (data[item].mood === 'happy')) {
-          this.state.totalMoods++;
-          this.state.happyMood++;
+          this.setState({ totalMoods: + 1 });
+          this.setState({ happyMood: + 1 });
 
         } else if ((data[item].mood === 'abysmal') || (data[item].mood === 'sad')) {
-          this.state.totalMoods++;
-          this.state.sadMood++;
+          this.setState({ totalMoods: + 1 });
+          this.setState({ sadMood: + 1 });
         }
       }
       let floatPos = (this.state.happyMood / this.state.totalMoods) * 100;
@@ -101,10 +101,10 @@ return (
                 You look great today. 
               </p>
             </h4>
-            <blockquote>
-            {this.state.quote.quote}
-            <cite>{this.state.quote.author}</cite>
-            </blockquote>
+              <blockquote>
+              {this.state.quote.quote}
+              <cite>{this.state.quote.author}</cite>
+              </blockquote>
           </div>
         </div>
       </div>
@@ -126,7 +126,6 @@ return (
             </div>
             <div className="card-icon"><i className="material-icons medium valign">library_books</i></div>
           </div>
-          <div className="card-action"><a href="#"></a></div>
         </div>
       </div>
       <div className="col s12 m4">
@@ -139,7 +138,6 @@ return (
             </div>
             <div className="card-icon"><i className="material-icons medium valign">mood</i></div>
           </div>
-          <div className="card-action"><a href="#"></a></div>
         </div>
       </div>
       <div className="col s12 m4">
@@ -153,7 +151,6 @@ return (
             </div>
             <div className="card-icon"><i className="material-icons medium valign">mood_bad</i></div>
           </div>
-          <div className="card-action"><a href="#"></a></div>
         </div>
       </div>
     </div>

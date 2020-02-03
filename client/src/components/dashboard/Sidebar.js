@@ -20,7 +20,7 @@ return (
 <li>
   <div className="divider"></div>
 </li>
-<li className="logout" onClick={this.onLogoutClick}><a><i className="material-icons">exit_to_app</i>Log Out</a></li>
+<li className="logout" onClick={this.onLogoutClick}><a  href= "/login"><i className="material-icons">exit_to_app</i>Log Out</a></li>
 </ul>
   </div>
     );

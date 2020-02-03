@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { PieChart, Pie, Sector, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import axios from 'axios';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";

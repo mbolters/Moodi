@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -41,7 +41,7 @@ onChange = e => {
   };
 onSubmit = e => {
     e.preventDefault();
-    const { errors } = this.state;
+    // const { errors } = this.state;
     const userData = {
       username: this.state.username,
       password: this.state.password

@@ -99,23 +99,23 @@ export default class EditMood extends Component {
                   <label><input name="mood" type="radio" value="abysmal" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span style={{fontSize:"5rem"}}>😫</span></label>
+                                <span role= "img" aria-label="Abysmal" style={{fontSize:"5rem"}}>😫</span></label>
                   <label><input name="mood" type="radio" value="sad" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span style={{fontSize:"5rem"}}>😕</span></label>
+                                <span  role= "img" aria-label="Sad" style={{fontSize:"5rem"}}>😕</span></label>
                   <label><input name="mood" type="radio" value="meh" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span style={{fontSize:"5rem"}}>😐</span></label>
+                                <span  role= "img" aria-label="Average" style={{fontSize:"5rem"}}>😐</span></label>
                   <label><input name="mood" type="radio" value="happy" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span style={{fontSize:"5rem"}}>🙂</span></label>
+                                <span  role= "img" aria-label="Happy" style={{fontSize:"5rem"}}>🙂</span></label>
                   <label><input name="mood" type="radio" value="ecstatic" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span style={{fontSize:"5rem"}}>😀</span></label>
+                                <span  role= "img" aria-label="Ecstatic" style={{fontSize:"5rem"}}>😀</span></label>
                 </div>
               </div>
             </div>

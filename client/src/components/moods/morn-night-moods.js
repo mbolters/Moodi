@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { loginUser } from "../../actions/authActions";
@@ -47,7 +46,7 @@ class MornNightList extends Component {
         axios.get('/moods/' + username)
          .then(response => {
            let data = response.data;
-           let noMood = "No moods from today."
+          //  let noMood = "No moods from today."
            
 
            this.setState({ moods: data });

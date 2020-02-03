@@ -26,7 +26,7 @@ const data = [{name: 'Sad', uv: 7, pv: 7, amt: 7, url: 'https://emojipedia-us.s3
 class Barchart extends Component {
     constructor() {
         super();
-        this.state = {
+        this.setState = ({
             day1: {},
             day2: {},
             day3: {},
@@ -35,7 +35,7 @@ class Barchart extends Component {
             day6: {},
             day7: {},
             mood: {}
-        }
+        })
       }
 
 // componentDidMount() {

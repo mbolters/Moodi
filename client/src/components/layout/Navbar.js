@@ -35,7 +35,7 @@ class Navbar extends Component {
     <nav>
       <div className="nav-wrapper">
         <ul>
-          <li><a href="/dashboard"><img src="moodi_logo.png" width="150px"></img></a></li>
+          <li><a href="/dashboard"><img alt= "Logo" src="moodi_logo.png" width="150px"></img></a></li>
         </ul>
         {/* <ul className="right">
           <li><a href="#!"><i className="material-icons">person</i></a></li>
