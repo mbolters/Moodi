@@ -43,7 +43,7 @@ require("./config/passport")(passport);
 
 // Routes
 app.use("/api/users", users);
-app.use('/routes/moods', moods);
+app.use('/moods', moods);
 
 //Serve static assets
 if(process.env.NODE_ENV === 'production'){
