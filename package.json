@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "description": "**Authentication",
   "main": "server.js",
-  "engines": {
-    "node": "12.13.0"
-  },
   "scripts": {
     "client-install": "npm install --prefix client",
     "build": "react-scripts build",
     "start": "node server.js",
     "server": "nodemon server.js",
+    "deploy": "aws s3 sync build/ s3://example-bucket --acl public-read",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install && npm run build"
@@ -22,7 +20,6 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "classnames": "^2.2.6",
-    "concurrently": "^5.0.2",
     "express": "^4.17.1",
     "gitignore": "^0.6.0",
     "is-empty": "^1.2.0",
@@ -53,5 +50,6 @@
   "bugs": {
     "url": "https://github.com/mbolters/Moodi/issues"
   },
-  "homepage": "https://github.com/mbolters/Moodi#readme"
+  "homepage": "https://github.com/mbolters/Moodi#readme",
+  "keywords": []
 }

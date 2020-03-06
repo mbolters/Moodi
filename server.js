@@ -26,13 +26,16 @@ app.use(
 app.use(bodyParser.json());
 
 // DB Config
-// const db = require("./config/keys").mongoURI;
+const db = require("./config/keys").mongoURI;
 // Serve up static assets
 // Connect to MongoDB
+// mongoose.connect("mongodb+srv://davishochs:Davisray01@cluster0-i1mpu.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
 mongoose
-  .connect(process.env.MONGODB_URI  || "mongodb://localhost/moodi", { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(db, {useNewUrlParser: true})
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
+
+  
 
 // Passport middleware
 app.use(passport.initialize());
