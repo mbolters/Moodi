@@ -51,5 +51,6 @@
   "bugs": {
     "url": "https://github.com/mbolters/Moodi/issues"
   },
-  "homepage": "https://github.com/mbolters/Moodi#readme"
+  "homepage": "https://github.com/mbolters/Moodi#readme",
+  "keywords": []
 }
