@@ -31,7 +31,7 @@ const db = require("./config/keys").mongoURI;
 // Connect to MongoDB
 // mongoose.connect("mongodb+srv://davishochs:Davisray01@cluster0-i1mpu.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
 mongoose
-  .connect(db, {useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI, {useNewUrlParser: true})
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
