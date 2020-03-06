@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let Mood = require('../models/temp1.js/index.js');
+let Mood = require('../models/Mood.js/index.js.js');
 
 //username passed thorugh /moods/username
 router.route('/:username').get((req, res) => {
