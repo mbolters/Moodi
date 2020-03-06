@@ -8,6 +8,7 @@
     "build": "react-scripts build",
     "start": "node server.js",
     "server": "nodemon server.js",
+    "deploy": "aws s3 sync build/ s3://example-bucket --acl public-read",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install && npm run build"
