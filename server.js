@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
 const moods = require("./routes/moods");
+const index = require("./routes/index")
 
 
 //Initialize
