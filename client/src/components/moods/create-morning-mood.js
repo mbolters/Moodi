@@ -47,6 +47,7 @@ class CreateMorningMood extends Component {
       .then(response => {
         let data = response.data;
         
+        
          
     })
     this.setState({ 
