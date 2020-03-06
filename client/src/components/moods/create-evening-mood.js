@@ -13,7 +13,7 @@ import "./create-mood.css";
 
   import 'react-toastify/dist/ReactToastify.css'
 
-class CreateMood extends Component {
+class CreateEveningMood extends Component {
 
 
   constructor(props) {
@@ -33,7 +33,8 @@ class CreateMood extends Component {
       date: new Date(),
       users: [],
       morning: null,
-      timeNow: null
+      timeNow: null,
+      entryExists: false
     }
   }
   
@@ -46,6 +47,29 @@ class CreateMood extends Component {
     axios.get('/moods/' + user.username)
       .then(response => {
         let data = response.data;
+
+        
+
+        for (let i = 0; i < data.length; i++) {
+          console.log(data)
+          let todayFormatted = new Date(data[i].date);
+          let today = todayFormatted.getDate();
+          console.log(todayFormatted)
+          console.log(today)
+          if (today === dayChecker) {
+            console.log("step 2")
+            if (data[i].morning === false) {
+              console.log("good to go");
+              this.setState({
+                entryExists: true
+              })
+            } else {
+              return;
+            }
+          } else {
+            return;
+          }
+        }
         
          
     })
@@ -89,7 +113,7 @@ class CreateMood extends Component {
       mood: this.state.mood,
       description: this.state.description,
       date: this.state.date,
-      morning: this.state.morning
+      morning: false
     };
 
     console.log(mood);
@@ -104,37 +128,20 @@ class CreateMood extends Component {
     });
 
     //after submit, redirect to dashboard
-    // this.props.history.push('/dashboard');
+    this.props.history.push('/dashboard');
  
   }
 
   render() {
     return (
       <div className="main">   
-        <Sidebar/>  
-        
-  <form >
-    
-      <label>
-        <input name="daytime" type="radio" checked />
-        <span>Morning</span>
-      </label>
-    
-    
-      <label>
-        <input name="daytime" type="radio" />
-        <span>Evening</span>
-      </label>
-    
-  </form>
-
-        
-        <div className="container-fluid">
-
-        <h4>How are you feeling?</h4>
+        <Sidebar/>   
+        <div className="container-fluid" >
+        <h6 style={{color: "grey"}}>Evening Entry</h6>
+        <h4 style={{color: "black"}}>How are you feeling?</h4>
         <form onSubmit={this.onSubmit} className= "input-field"> 
           <ToastContainer autoClose={2000}/>
-        <h4>Create New Mood Log</h4>
+        <h4 style={{color: "black"}}>Create New Mood Log</h4>
           <div className="form-group"> 
           </div>
 
@@ -169,7 +176,7 @@ class CreateMood extends Component {
           </div>
           <div className= "row">
             <div className="form-group input-field" style= {{paddingTop: "30px"}}> 
-              <label>Description: </label>
+              <label style={{color:"black"}}>Description: </label>
               <input  type="text"
                   required
                   className="form-control"
@@ -180,7 +187,7 @@ class CreateMood extends Component {
           </div>
           <div className= "row">
             <div className="form-group input-field" style= {{paddingTop: "50px"}}>
-              <label>Date: </label>
+              <label style={{color:"black"}}>Date: </label>
               <div>
                 <DatePicker
                   selected={this.state.date}
@@ -202,7 +209,7 @@ class CreateMood extends Component {
   }
 }
 
-CreateMood.propTypes = {
+CreateEveningMood.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -216,4 +223,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { loginUser }
-)(CreateMood);
+)(CreateEveningMood);
