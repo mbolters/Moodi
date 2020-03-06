@@ -40,16 +40,16 @@ mongoose
 // Passport middleware
 app.use(passport.initialize());
 
-if (process.env.NODE_ENV === 'production') {
-  // Exprees will serve up production assets
-  app.use(express.static('client/build'));
+// if (process.env.NODE_ENV === 'production') {
+//   // Exprees will serve up production assets
+//   app.use(express.static('client/build'));
 
-  // Express serve up index.html file if it doesn't recognize route
-  const path = require('path');
-  app.get('/*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
+//   // Express serve up index.html file if it doesn't recognize route
+//   const path = require('path');
+//   app.get('/*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+//   });
+// }
 
 // Passport config
 require("./config/passport")(passport);
@@ -57,6 +57,7 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 app.use('/moods', moods);
+app.use('/', index);
 
 const port = process.env.PORT || 5000 ; // process.env.port is Heroku's port to deploy the app there
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
