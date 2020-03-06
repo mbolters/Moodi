@@ -11,9 +11,11 @@ h6 {
 }
 
 /* label focus color */
-.input-field input:focus + label {
-  color: darkviolet !important;
+.input-field input:focus + label, textarea:focus {
+  color: black !important;
 }
+
+
 /* label underline focus color */
 .row .input-field input:focus {
   border-bottom: 1px solid darkviolet !important;
@@ -243,4 +245,5 @@ blockquote {
 
 
 
+  
   

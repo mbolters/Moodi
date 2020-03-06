@@ -9,6 +9,7 @@ import Navbar from "./components/layout/Navbar";
 import PieChart from "./components/recharts/PieChart"
 import Calendar from "./components/calendar/Calendar"
 import MornEveMood from "./components/moods/morn-night-moods"
+import FormContainer from "./components/moods/form-container"
 
 
 
@@ -62,7 +63,7 @@ class App extends Component {
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <Route path="/moods" exact component={MoodsList} />
               <Route path="/edit/:id" component={EditMood} />
-              <PrivateRoute path="/create" component={CreateMood} />
+              <PrivateRoute path="/create" component={FormContainer} />
             </Switch>
             
           </div>
