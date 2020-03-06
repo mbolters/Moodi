@@ -48,7 +48,7 @@ class MoodsList extends Component {
          .then(response => {
            let data = response.data;
            let noMood = "No moods from today."
-           
+           console.log(data);
 
            this.setState({ moods: data });
 

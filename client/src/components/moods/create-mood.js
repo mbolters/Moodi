@@ -169,12 +169,13 @@ class CreateMood extends Component {
           </div>
           <div className= "row">
             <div className="form-group input-field" style= {{paddingTop: "30px"}}> 
-              <label>Description: </label>
+              <label style={{color: "black"}}>Description: </label>
               <input  type="text"
                   required
                   className="form-control"
                   value={this.state.description}
                   onChange={this.onChangeDescription}
+                  style={{color: "black"}}
                   />
             </div>
           </div>
