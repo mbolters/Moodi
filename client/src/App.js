@@ -61,7 +61,7 @@ class App extends Component {
             <Route exact path="/morn" component={MornEveMood} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <Route path="/moods" exact component={MoodsList} />
+              <Route path="/moods/" exact component={MoodsList} />
               <Route path="/edit/:id" component={EditMood} />
               <PrivateRoute path="/create" component={FormContainer} />
             </Switch>
