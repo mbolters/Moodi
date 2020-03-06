@@ -12,6 +12,6 @@ const MoodSchema = new Schema({
   timestamps: true,
 });
 
-const mood = mongoose.model('mood', MoodSchema);
+const Mood = mongoose.model('moods', MoodSchema);
 
-module.exports = mood;
+module.exports = Mood;
