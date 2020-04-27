@@ -8,6 +8,7 @@ const moods = require("./routes/moods");
 const path = require("path");
 
 
+
 //Initialize
 const app = express();
 
@@ -27,16 +28,20 @@ app.use(
 app.use(bodyParser.json());
 
 // DB Config
-// const db = require("./config/keys").mongoURI;
+const db = "mongodb://localhost:27017"
 // Serve up static assets
 // Connect to MongoDB
+// mongoose.connect("mongodb+srv://davishochs:Davisray01@cluster0-i1mpu.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
 mongoose
-  .connect(process.env.MONGODB_URI  || "mongodb://localhost/moodi", { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB_URI || db, {useNewUrlParser: true})
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
+  
+
 // Passport middleware
 app.use(passport.initialize());
+
 
 // Passport config
 require("./config/passport")(passport);
@@ -51,6 +56,19 @@ if(process.env.NODE_ENV === 'production'){
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve( 'Moodi', 'client', 'build'))
+  });
+}
+
+
+
+if (process.env.NODE_ENV === 'production') {
+  // Exprees will serve up production assets
+  app.use(express.static('client/build'));
+
+  // Express serve up index.html file if it doesn't recognize route
+  const path = require('path');
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
 

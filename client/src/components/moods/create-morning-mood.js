@@ -13,7 +13,7 @@ import "./create-mood.css";
 
   import 'react-toastify/dist/ReactToastify.css'
 
-class CreateMood extends Component {
+class CreateMorningMood extends Component {
 
 
   constructor(props) {
@@ -25,7 +25,7 @@ class CreateMood extends Component {
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
-    this.setState ({
+    this.state = {
       name: '',
       username: '',
       mood: '',
@@ -34,7 +34,7 @@ class CreateMood extends Component {
       users: [],
       morning: null,
       timeNow: null
-    })
+    }
   }
   
 
@@ -46,6 +46,7 @@ class CreateMood extends Component {
     axios.get('/moods/' + user.username)
       .then(response => {
         let data = response.data;
+        
         
          
     })
@@ -89,7 +90,7 @@ class CreateMood extends Component {
       mood: this.state.mood,
       description: this.state.description,
       date: this.state.date,
-      morning: this.state.morning
+      morning: true
     };
 
     console.log(mood);
@@ -112,33 +113,18 @@ class CreateMood extends Component {
     return (
       <div className="main">   
         <Sidebar/>  
-        
-  <form >
-    
-      <label>
-        <input name="daytime" type="radio" checked />
-        <span>Morning</span>
-      </label>
-    
-    
-      <label>
-        <input name="daytime" type="radio" />
-        <span>Evening</span>
-      </label>
-    
-  </form>
 
         
         <div className="container-fluid">
-
-        <h4>How are you feeling?</h4>
+        <h6 style={{color: "grey"}}>Morning Entry</h6>
+        <h4 style={{color: "black"}}>How are you feeling?</h4>
         <form onSubmit={this.onSubmit} className= "input-field"> 
           <ToastContainer autoClose={2000}/>
-        <h4>Create New Mood Log</h4>
+        <h4 style={{color: "black"}}>Create New Mood Log</h4>
           <div className="form-group"> 
           </div>
 
-          <div className= "container-fluid">
+          <div className= "container-fluid ">
             <div className= "row">
               <div className="form-group"> 
                 <div className="mood"  style= {{textAlign: "center"}}>
@@ -146,23 +132,23 @@ class CreateMood extends Component {
                     <input name="mood" type="radio" value="abysmal" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span role= "img" aria-label="Abysmal" style={{fontSize:"5rem"}}>😫</span></label>
+                                <span style={{fontSize:"5rem"}}>😫</span></label>
                   <label><input name="mood" type="radio" value="sad" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span  role= "img" aria-label="Sad" style={{fontSize:"5rem"}}>😕</span></label>
+                                <span style={{fontSize:"5rem"}}>😕</span></label>
                   <label><input name="mood" type="radio" value="meh" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span  role= "img" aria-label="Average" style={{fontSize:"5rem"}}>😐</span></label>
+                                <span style={{fontSize:"5rem"}}>😐</span></label>
                   <label><input name="mood" type="radio" value="happy" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span role= "img" aria-label="Happy" style={{fontSize:"5rem"}}>🙂</span></label>
+                                <span style={{fontSize:"5rem"}}>🙂</span></label>
                   <label><input name="mood" type="radio" value="ecstatic" required
                                 className="form-control"
                                 onChange={this.onChangeMood}/>
-                                <span  role= "img" aria-label="Ecstatic" style={{fontSize:"5rem"}}>😀</span></label>
+                                <span style={{fontSize:"5rem"}}>😀</span></label>
                 </div>
               </div>
             </div>
@@ -173,18 +159,19 @@ class CreateMood extends Component {
               <input  type="text"
                   required
                   className="form-control"
-                  value={this.description}
+                  value={this.state.description}
                   onChange={this.onChangeDescription}
-                  style={{color: "black"}}
+                  style={{color: "white"}}
+                  
                   />
             </div>
           </div>
           <div className= "row">
             <div className="form-group input-field" style= {{paddingTop: "50px"}}>
-              <label>Date: </label>
+              <label style={{color: "black"}}>Date: </label>
               <div>
                 <DatePicker
-                  selected={this.date}
+                  selected={this.state.date}
                   onChange={this.onChangeDate}
                   disabled="disabled"
                 />
@@ -203,7 +190,7 @@ class CreateMood extends Component {
   }
 }
 
-CreateMood.propTypes = {
+CreateMorningMood.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -217,4 +204,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { loginUser }
-)(CreateMood);
+)(CreateMorningMood);

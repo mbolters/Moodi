@@ -44,11 +44,12 @@ class MoodsList extends Component {
 
         const { user } = this.props.auth;
         let username = user.username;
+        console.log(username)
         axios.get('/moods/' + username)
          .then(response => {
            let data = response.data;
            let noMood = "No moods from today."
-           
+           console.log(data);
 
            this.setState({ moods: data });
 
