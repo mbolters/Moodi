@@ -1,5 +1,8 @@
 ## Overview
-MERN stack application with user authentication that allows users to record and write journal entries for daily mood. Moods are saved and returned in data charts to review entries with a motivational quote API.
+Moodi is a MERN stack application with user authentication that allows users to record and write journal entries for daily mood. Moods are saved and returned in data charts to review entries with a motivational quote API.
+
+## LINK
+[Click Here to try the App](https://cryptic-savannah-50890.herokuapp.com/)
 
 
 ### Programs Used: 
